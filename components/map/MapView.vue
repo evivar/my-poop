@@ -79,6 +79,10 @@ let clusterGroup: any = null
 let userMarker: any = null
 let L: any = null
 let moveendTimer: ReturnType<typeof setTimeout> | null = null
+// True si arrancamos con el fallback Madrid porque la geolocalización tardó
+// más que el timeout. Se usa para que el watcher de userCoords haga flyTo
+// una única vez cuando las coords reales lleguen tarde.
+let usedFallback = false
 const locating = ref(false)
 
 // Carga baños dentro del bbox actual del mapa, expandido un 50% en cada
@@ -126,7 +130,11 @@ onMounted(async () => {
     }
     // On native, wait longer for permission dialog + GPS fix
     const timeoutMs = Capacitor.isNativePlatform() ? 10000 : 1500
-    const timeout = setTimeout(() => { stop(); resolve(defaultCenter) }, timeoutMs)
+    const timeout = setTimeout(() => {
+      stop()
+      usedFallback = true
+      resolve(defaultCenter)
+    }, timeoutMs)
 
     const stop = watch(userCoords, (c) => {
       if (c) {
@@ -233,7 +241,8 @@ watch(userCoords, (newCoords) => {
 
   if (userMarker) {
     userMarker.setLatLng([newCoords.lat, newCoords.lng])
-  } else {
+  }
+  else {
     userMarker = L.marker([newCoords.lat, newCoords.lng], {
       icon: L.icon({
         iconUrl: '/markers/user-location.svg',
@@ -241,6 +250,15 @@ watch(userCoords, (newCoords) => {
         iconAnchor: [10, 10],
       }),
     }).addTo(map)
+  }
+
+  // Si arrancamos con el fallback Madrid porque la geolocalización tardó
+  // más de lo esperado, ahora que sí tenemos coords reales volamos al
+  // usuario una única vez. Si ya está en su zona o ha pasado por aquí, no
+  // hacemos nada (`usedFallback` se desactiva tras el primer fly).
+  if (usedFallback) {
+    usedFallback = false
+    map.flyTo([newCoords.lat, newCoords.lng], 15)
   }
 })
 
