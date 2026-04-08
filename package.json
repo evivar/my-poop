@@ -1,0 +1,48 @@
+{
+  "name": "my-poop",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "build:cap": "CAPACITOR=true nuxt generate",
+    "cap:sync": "npm run build:cap && npx cap sync",
+    "cap:android": "npm run cap:sync && npx cap open android",
+    "cap:run:android": "npm run cap:sync && npx cap run android",
+    "seed:osm": "tsx scripts/seed-osm.ts"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.3.0",
+    "@capacitor/app": "^8.1.0",
+    "@capacitor/camera": "^8.0.2",
+    "@capacitor/core": "^8.3.0",
+    "@capacitor/geolocation": "^8.1.0",
+    "@capacitor/share": "^8.0.1",
+    "@nuxt/ui": "^4.6.0",
+    "@nuxtjs/i18n": "^10.2.4",
+    "@nuxtjs/supabase": "^2.0.4",
+    "@tensorflow/tfjs": "^4.22.0",
+    "@vue-leaflet/vue-leaflet": "^0.10.1",
+    "leaflet": "^1.9.4",
+    "leaflet.markercluster": "^1.5.3",
+    "nsfwjs": "^4.3.0",
+    "nuxt": "^4.4.2",
+    "vue": "^3.5.31",
+    "vue-router": "^5.0.4"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.3.0",
+    "@iconify-json/heroicons": "^1.2.3",
+    "@iconify-json/simple-icons": "^1.2.75",
+    "@types/leaflet": "^1.9.21",
+    "@types/leaflet.markercluster": "^1.5.6",
+    "@vite-pwa/nuxt": "^1.1.1",
+    "dotenv": "^17.4.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

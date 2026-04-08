@@ -1,0 +1,156 @@
+{
+  "app": {
+    "name": "My Poop",
+    "tagline": "Find the best bathrooms near you"
+  },
+  "auth": {
+    "login": "Log In",
+    "register": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "displayName": "Display Name",
+    "loginWithGoogle": "Continue with Google",
+    "logout": "Log Out",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "confirming": "Confirming your account..."
+  },
+  "map": {
+    "searchPlaceholder": "Search for an address or place...",
+    "locateMe": "Find my location"
+  },
+  "bathroom": {
+    "name": "Name",
+    "type": "Type",
+    "types": {
+      "public": "Public Restroom",
+      "restaurant": "Restaurant",
+      "gas_station": "Gas Station",
+      "mall": "Shopping Mall",
+      "cafe": "Cafe",
+      "hotel": "Hotel",
+      "hospital": "Hospital",
+      "other": "Other"
+    },
+    "accessible": "Wheelchair Accessible",
+    "free": "Free",
+    "paid": "Paid",
+    "directions": "How to get there",
+    "schedule": "Hours",
+    "reviews": "Reviews",
+    "noReviews": "No reviews yet. Be the first!",
+    "addBathroom": "Add Bathroom",
+    "directionsPlaceholder": "e.g. Inside the mall, 2nd floor near food court",
+    "schedulePlaceholder": "e.g. Mon-Fri 8am-10pm",
+    "tapMapToSet": "Tap the map to set the bathroom location",
+    "locationRequired": "Please set a location for the bathroom",
+    "getDirections": "Get Directions",
+    "openInMap": "Open in Map",
+    "share": "Share",
+    "linkCopied": "Link copied to clipboard",
+    "importedFromOsm": "Imported from OSM",
+    "verified": "Verified",
+    "helpImproveOsm": "Help improve this bathroom — edit it to add details",
+    "edit": "Edit",
+    "editBathroom": "Edit Bathroom"
+  },
+  "review": {
+    "rating": "Overall Rating",
+    "cleanliness": "Cleanliness",
+    "privacy": "Privacy",
+    "toiletPaperQuality": "Toilet Paper Quality",
+    "comment": "Comment",
+    "commentPlaceholder": "Share your experience...",
+    "submit": "Submit Review",
+    "report": "Report",
+    "reportReason": "Why are you reporting this review?",
+    "reportSubmit": "Submit Report",
+    "loginToReview": "Log in to leave a review",
+    "leaveReview": "Leave a Review",
+    "alreadyReviewed": "You have already reviewed this bathroom.",
+    "confirmDelete": "Are you sure you want to delete this review?",
+    "helpful": "Helpful",
+    "loginToVote": "Log in to vote"
+  },
+  "profile": {
+    "title": "Profile",
+    "myReviews": "My Reviews",
+    "favorites": "Favorites",
+    "noFavorites": "You haven't saved any favorites yet.",
+    "moderation": "Moderation",
+    "changePassword": "Change Password",
+    "newPassword": "New Password",
+    "save": "Save",
+    "saved": "Changes saved"
+  },
+  "moderation": {
+    "pendingReports": "Pending Reports",
+    "approve": "Approve (Unhide)",
+    "delete": "Delete Review",
+    "ban": "Ban User",
+    "noReports": "No pending reports",
+    "reason": "Reason",
+    "reportedBy": "Reported by"
+  },
+  "photos": {
+    "addPhoto": "Add photo",
+    "takePhoto": "Take photo",
+    "chooseFromGallery": "Choose from gallery",
+    "photos": "Photos",
+    "noPhotos": "No photos yet",
+    "tooLarge": "Image is too large (max 5MB)",
+    "rejected": "This image doesn't meet our guidelines",
+    "validating": "Checking image...",
+    "maxReached": "Maximum number of photos reached",
+    "cameraError": "Couldn't access the camera"
+  },
+  "status": {
+    "title": "Report Status",
+    "types": {
+      "no_paper": "No toilet paper",
+      "dirty": "Dirty",
+      "closed": "Closed",
+      "out_of_order": "Out of order",
+      "flooded": "Flooded"
+    },
+    "reported": "Status reported, thanks!",
+    "alreadyReported": "You already reported this in the last 4 hours",
+    "loginToReport": "Log in to report status",
+    "activeAlerts": "Current Alerts",
+    "reports": "{count} report | {count} reports"
+  },
+  "filters": {
+    "title": "Filters",
+    "clearAll": "Clear all",
+    "onlyFree": "Free only",
+    "onlyAccessible": "Accessible only",
+    "onlyFavorites": "Favorites only",
+    "minRating": "Minimum rating"
+  },
+  "nearest": {
+    "findNearest": "Nearest bathroom",
+    "found": "Nearest bath found within {distance} - {name}",
+    "notFound": "No bathrooms found nearby"
+  },
+  "city": {
+    "titlePrefix": "Public bathrooms in",
+    "stats": {
+      "total": "Total",
+      "free": "Free",
+      "accessible": "Accessible",
+      "verified": "Verified"
+    },
+    "topRated": "Top Rated",
+    "missedCta": "Did we miss one?"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "notFound": "Not found",
+    "save": "Save"
+  }
+}

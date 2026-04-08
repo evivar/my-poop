@@ -1,0 +1,156 @@
+{
+  "app": {
+    "name": "My Poop",
+    "tagline": "Encuentra los mejores baños cerca de ti"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "displayName": "Nombre",
+    "loginWithGoogle": "Continuar con Google",
+    "logout": "Cerrar Sesión",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "confirming": "Confirmando tu cuenta..."
+  },
+  "map": {
+    "searchPlaceholder": "Buscar dirección o lugar...",
+    "locateMe": "Encontrar mi ubicación"
+  },
+  "bathroom": {
+    "name": "Nombre",
+    "type": "Tipo",
+    "types": {
+      "public": "Baño Público",
+      "restaurant": "Restaurante",
+      "gas_station": "Gasolinera",
+      "mall": "Centro Comercial",
+      "cafe": "Cafetería",
+      "hotel": "Hotel",
+      "hospital": "Hospital",
+      "other": "Otro"
+    },
+    "accessible": "Accesible en silla de ruedas",
+    "free": "Gratis",
+    "paid": "De pago",
+    "directions": "Cómo llegar",
+    "schedule": "Horario",
+    "reviews": "Reseñas",
+    "noReviews": "Aún no hay reseñas. ¡Sé el primero!",
+    "addBathroom": "Añadir Baño",
+    "directionsPlaceholder": "ej. Dentro del centro comercial, 2ª planta junto al food court",
+    "schedulePlaceholder": "ej. Lun-Vie 8:00-22:00",
+    "tapMapToSet": "Toca el mapa para marcar la ubicación del baño",
+    "locationRequired": "Por favor, establece una ubicación para el baño",
+    "getDirections": "Cómo llegar",
+    "openInMap": "Abrir en el Mapa",
+    "share": "Compartir",
+    "linkCopied": "Enlace copiado al portapapeles",
+    "importedFromOsm": "Importado de OSM",
+    "verified": "Verificado",
+    "helpImproveOsm": "Ayuda a mejorar este baño — edítalo para añadir detalles",
+    "edit": "Editar",
+    "editBathroom": "Editar baño"
+  },
+  "review": {
+    "rating": "Puntuación General",
+    "cleanliness": "Limpieza",
+    "privacy": "Privacidad",
+    "toiletPaperQuality": "Calidad del Papel",
+    "comment": "Comentario",
+    "commentPlaceholder": "Comparte tu experiencia...",
+    "submit": "Enviar Reseña",
+    "report": "Reportar",
+    "reportReason": "¿Por qué reportas esta reseña?",
+    "reportSubmit": "Enviar Reporte",
+    "loginToReview": "Inicia sesión para dejar una reseña",
+    "leaveReview": "Dejar una Reseña",
+    "alreadyReviewed": "Ya has dejado una reseña para este baño.",
+    "confirmDelete": "¿Estás seguro de que quieres eliminar esta reseña?",
+    "helpful": "Útil",
+    "loginToVote": "Inicia sesión para votar"
+  },
+  "profile": {
+    "title": "Perfil",
+    "myReviews": "Mis Reseñas",
+    "favorites": "Favoritos",
+    "noFavorites": "Aún no has guardado ningún favorito.",
+    "moderation": "Moderación",
+    "changePassword": "Cambiar Contraseña",
+    "newPassword": "Nueva Contraseña",
+    "save": "Guardar",
+    "saved": "Cambios guardados"
+  },
+  "moderation": {
+    "pendingReports": "Reportes Pendientes",
+    "approve": "Aprobar (Mostrar)",
+    "delete": "Eliminar Reseña",
+    "ban": "Banear Usuario",
+    "noReports": "No hay reportes pendientes",
+    "reason": "Razón",
+    "reportedBy": "Reportado por"
+  },
+  "photos": {
+    "addPhoto": "Añadir foto",
+    "takePhoto": "Hacer foto",
+    "chooseFromGallery": "Elegir de la galería",
+    "photos": "Fotos",
+    "noPhotos": "Aún no hay fotos",
+    "tooLarge": "La imagen es demasiado grande (máx 5MB)",
+    "rejected": "Esta imagen no cumple con nuestras normas",
+    "validating": "Verificando imagen...",
+    "maxReached": "Se ha alcanzado el número máximo de fotos",
+    "cameraError": "No se pudo acceder a la cámara"
+  },
+  "status": {
+    "title": "Reportar Estado",
+    "types": {
+      "no_paper": "Sin papel",
+      "dirty": "Sucio",
+      "closed": "Cerrado",
+      "out_of_order": "Fuera de servicio",
+      "flooded": "Inundado"
+    },
+    "reported": "Estado reportado, ¡gracias!",
+    "alreadyReported": "Ya reportaste esto en las últimas 4 horas",
+    "loginToReport": "Inicia sesión para reportar estado",
+    "activeAlerts": "Alertas Actuales",
+    "reports": "{count} reporte | {count} reportes"
+  },
+  "filters": {
+    "title": "Filtros",
+    "clearAll": "Limpiar todo",
+    "onlyFree": "Solo gratuitos",
+    "onlyAccessible": "Solo accesibles",
+    "onlyFavorites": "Solo favoritos",
+    "minRating": "Puntuación mínima"
+  },
+  "nearest": {
+    "findNearest": "Baño más cercano",
+    "found": "Baño más cercano a {distance} - {name}",
+    "notFound": "No se encontraron baños cerca"
+  },
+  "city": {
+    "titlePrefix": "Baños públicos en",
+    "stats": {
+      "total": "Total",
+      "free": "Gratis",
+      "accessible": "Accesibles",
+      "verified": "Verificados"
+    },
+    "topRated": "Mejor valorados",
+    "missedCta": "¿Falta alguno?"
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "loading": "Cargando...",
+    "error": "Ha ocurrido un error",
+    "success": "Éxito",
+    "notFound": "No encontrado",
+    "save": "Guardar"
+  }
+}

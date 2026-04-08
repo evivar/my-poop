@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(npx:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(claude mcp:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_fill_form",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_evaluate",
+      "mcp__supabase__execute_sql",
+      "mcp__playwright__browser_run_code",
+      "mcp__playwright__browser_type",
+      "Bash(echo \"exit: $?\")",
+      "mcp__supabase__generate_typescript_types",
+      "Bash(grep -E \"\\\\.\\(json|ts\\)$\")",
+      "Bash(npm run:*)",
+      "mcp__supabase__list_tables",
+      "mcp__supabase__list_migrations"
+    ]
+  }
+}

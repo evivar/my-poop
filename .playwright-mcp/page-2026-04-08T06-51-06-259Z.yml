@@ -1,0 +1,185 @@
+- generic:
+  - generic:
+    - generic:
+      - navigation:
+        - link:
+          - /url: /
+          - generic: 🧻
+          - generic: My Poop
+        - generic:
+          - button: Log In
+          - button: Sign Up
+      - main:
+        - generic:
+          - generic:
+            - button [ref=e133] [cursor=pointer]
+            - button [ref=e134] [cursor=pointer]
+            - button [ref=e135] [cursor=pointer]
+            - button [ref=e136] [cursor=pointer]
+            - button [ref=e137] [cursor=pointer]
+            - button [ref=e138] [cursor=pointer]
+            - button [ref=e139] [cursor=pointer]:
+              - generic [ref=e61]: "3"
+            - button [ref=e140] [cursor=pointer]:
+              - generic [ref=e63]: "4"
+            - button [ref=e141] [cursor=pointer]
+            - button [ref=e142] [cursor=pointer]:
+              - generic [ref=e66]: "3"
+            - button [ref=e143] [cursor=pointer]:
+              - generic [ref=e68]: "2"
+            - button [ref=e144] [cursor=pointer]
+            - button [ref=e145] [cursor=pointer]
+            - button [ref=e146] [cursor=pointer]
+            - button [ref=e147] [cursor=pointer]
+            - button [ref=e148] [cursor=pointer]
+            - button [ref=e149] [cursor=pointer]
+            - button [ref=e150] [cursor=pointer]
+            - button [ref=e151] [cursor=pointer]
+            - button [ref=e152] [cursor=pointer]:
+              - generic [ref=e78]: "2"
+            - button [ref=e153] [cursor=pointer]:
+              - generic [ref=e80]: "2"
+            - button [ref=e154] [cursor=pointer]:
+              - generic [ref=e82]: "3"
+            - button [ref=e155] [cursor=pointer]:
+              - generic [ref=e84]: "2"
+            - button [ref=e156] [cursor=pointer]
+            - button [ref=e157] [cursor=pointer]:
+              - generic [ref=e87]: "2"
+            - button [ref=e158] [cursor=pointer]
+            - button [ref=e159] [cursor=pointer]
+            - button [ref=e160] [cursor=pointer]
+            - button [ref=e161] [cursor=pointer]:
+              - generic [ref=e92]: "2"
+            - button [ref=e162] [cursor=pointer]:
+              - generic [ref=e94]: "2"
+            - button [ref=e163] [cursor=pointer]
+            - button [ref=e164] [cursor=pointer]:
+              - generic [ref=e97]: "3"
+            - button [ref=e165] [cursor=pointer]
+            - button [ref=e166] [cursor=pointer]
+            - button [ref=e167] [cursor=pointer]:
+              - generic [ref=e101]: "2"
+            - button [ref=e168] [cursor=pointer]
+            - button [ref=e169] [cursor=pointer]
+            - button [ref=e170] [cursor=pointer]:
+              - generic [ref=e105]: "2"
+            - button [ref=e171] [cursor=pointer]:
+              - generic [ref=e107]: "3"
+            - button [ref=e172] [cursor=pointer]:
+              - generic [ref=e109]: "5"
+            - button [ref=e173] [cursor=pointer]
+            - button [ref=e174] [cursor=pointer]
+            - button [ref=e175] [cursor=pointer]:
+              - generic [ref=e113]: "3"
+            - button [ref=e176] [cursor=pointer]:
+              - generic [ref=e115]: "2"
+            - button [ref=e177] [cursor=pointer]:
+              - generic [ref=e117]: "2"
+            - button [ref=e178] [cursor=pointer]:
+              - generic [ref=e119]: "2"
+            - button [ref=e179] [cursor=pointer]:
+              - generic [ref=e121]: "5"
+            - button [ref=e180] [cursor=pointer]
+            - button [ref=e181] [cursor=pointer]:
+              - generic [ref=e124]: "2"
+            - button [ref=e182] [cursor=pointer]
+            - button [ref=e183] [cursor=pointer]:
+              - generic [ref=e127]: "11"
+            - button [ref=e184] [cursor=pointer]
+            - button [ref=e185] [cursor=pointer]
+            - button [ref=e186] [cursor=pointer]:
+              - generic [ref=e131]: "8"
+            - button [ref=e187] [cursor=pointer]
+            - tooltip: Public toilet - 0.0
+            - generic:
+              - generic [ref=e15]: 300 m
+              - generic [ref=e16]:
+                - button [ref=e188] [cursor=pointer]: +
+                - button [ref=e189] [cursor=pointer]: −
+            - generic [ref=e19]:
+              - link [ref=e190] [cursor=pointer]:
+                - /url: https://leafletjs.com
+                - img [ref=e21]
+                - text: Leaflet
+              - text: "| ©"
+              - link [ref=e191] [cursor=pointer]:
+                - /url: https://www.openstreetmap.org/copyright
+                - text: OpenStreetMap
+          - generic:
+            - generic:
+              - generic:
+                - textbox:
+                  - /placeholder: Search for an address or place...
+            - generic:
+              - button
+          - button
+          - generic:
+            - button
+  - generic:
+    - img
+  - generic [ref=e40]:
+    - button [ref=e192] [cursor=pointer]:
+      - img [ref=e42]
+    - generic [ref=e193]:
+      - generic [ref=e46]: "85"
+      - generic [ref=e47]: ms
+    - button [ref=e194] [cursor=pointer]:
+      - img [ref=e50]
+  - dialog "Bathroom Details" [ref=e196]:
+    - generic [ref=e197]:
+      - heading [level=2] [ref=e198]: Bathroom Details
+      - paragraph [ref=e199]: Bathroom details and reviews
+    - generic [ref=e201]:
+      - generic [ref=e203]:
+        - generic [ref=e204]:
+          - heading "Public toilet" [level=3] [ref=e205]
+          - generic [ref=e206]: Imported from OSM
+        - generic [ref=e207]:
+          - button "Open in Map" [active] [ref=e208]
+          - button "Share" [ref=e210]
+          - button [ref=e212]
+      - generic [ref=e215]:
+        - generic [ref=e216]:
+          - generic [ref=e217]:
+            - generic [ref=e218]:
+              - generic [ref=e219]:
+                - button "🧻" [disabled] [ref=e220]
+                - button "🧻" [disabled] [ref=e221]
+                - button "🧻" [disabled] [ref=e222]
+                - button "🧻" [disabled] [ref=e223]
+                - button "🧻" [disabled] [ref=e224]
+              - generic [ref=e225]: (0)
+            - generic [ref=e227]:
+              - generic [ref=e229]: Paid
+              - generic [ref=e230]: Public Restroom
+            - generic [ref=e231]:
+              - generic [ref=e232]:
+                - generic [ref=e233]: Cleanliness
+                - generic [ref=e234]:
+                  - button "🧻" [disabled] [ref=e235]
+                  - button "🧻" [disabled] [ref=e236]
+                  - button "🧻" [disabled] [ref=e237]
+                  - button "🧻" [disabled] [ref=e238]
+                  - button "🧻" [disabled] [ref=e239]
+              - generic [ref=e240]:
+                - generic [ref=e241]: Privacy
+                - generic [ref=e242]:
+                  - button "🧻" [disabled] [ref=e243]
+                  - button "🧻" [disabled] [ref=e244]
+                  - button "🧻" [disabled] [ref=e245]
+                  - button "🧻" [disabled] [ref=e246]
+                  - button "🧻" [disabled] [ref=e247]
+              - generic [ref=e248]:
+                - generic [ref=e249]: Toilet Paper Quality
+                - generic [ref=e250]:
+                  - button "🧻" [disabled] [ref=e251]
+                  - button "🧻" [disabled] [ref=e252]
+                  - button "🧻" [disabled] [ref=e253]
+                  - button "🧻" [disabled] [ref=e254]
+                  - button "🧻" [disabled] [ref=e255]
+          - button "Get Directions" [ref=e256]: Get Directions
+          - paragraph [ref=e258]: Log in to leave a review
+        - generic [ref=e259]:
+          - heading "Reviews (0)" [level=4] [ref=e260]
+          - generic [ref=e261]: No reviews yet. Be the first!
