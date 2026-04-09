@@ -1,6 +1,3 @@
-import { Capacitor } from '@capacitor/core'
-import { Share } from '@capacitor/share'
-
 export type ShareOptions = {
   title?: string
   text?: string
@@ -16,33 +13,21 @@ const isUserCancel = (e: any) => {
 }
 
 export const useShare = () => {
-  const isNative = Capacitor.isNativePlatform()
-
   const share = async (options: ShareOptions): Promise<ShareResult> => {
-    // Native (Android/iOS): always use Capacitor Share so the system chooser
-    // (ACTION_SEND on Android) is invoked, regardless of WebView capabilities.
-    if (isNative) {
-      try {
-        await Share.share(options)
-        return 'shared'
-      } catch (e: any) {
-        if (isUserCancel(e)) return 'cancelled'
-        throw e
-      }
-    }
-
-    // Web with Web Share API (mobile Safari, modern Chrome on Android browser).
+    // Web Share API: disponible en mobile Safari y Chrome modernos.
+    // Lanza el share sheet nativo del SO desde el navegador.
     if (typeof navigator !== 'undefined' && typeof (navigator as any).share === 'function') {
       try {
         await (navigator as any).share(options)
         return 'shared'
-      } catch (e: any) {
+      }
+      catch (e: any) {
         if (isUserCancel(e)) return 'cancelled'
-        // Any other error falls through to clipboard fallback.
+        // Cualquier otro error cae al fallback de clipboard.
       }
     }
 
-    // Fallback: copy to clipboard.
+    // Fallback: copiar al portapapeles.
     const fallbackText = [options.text, options.url].filter(Boolean).join('\n')
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
       await navigator.clipboard.writeText(fallbackText)

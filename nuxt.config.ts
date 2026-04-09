@@ -122,7 +122,7 @@ export default defineNuxtConfig({
     },
   },
 
-  ssr: process.env.CAPACITOR !== 'true',
+  ssr: true,
 
   compatibilityDate: '2026-03-27',
 })

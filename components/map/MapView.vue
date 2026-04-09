@@ -32,7 +32,6 @@
 
 <script setup lang="ts">
 import type { Bathroom, BathroomType } from '~/types'
-import { Capacitor } from '@capacitor/core'
 
 interface Props {
   /** Si se pasa, el mapa se centra aquí en vez de pedir geolocalización */
@@ -128,8 +127,10 @@ onMounted(async () => {
       resolve([userCoords.value.lat, userCoords.value.lng])
       return
     }
-    // On native, wait longer for permission dialog + GPS fix
-    const timeoutMs = Capacitor.isNativePlatform() ? 10000 : 1500
+    // 1.5s da margen al usuario para aceptar el dialog del navegador.
+    // Si tarda más, mostramos el fallback y el watcher hará flyTo cuando
+    // lleguen las coords reales (ver el watcher de userCoords más abajo).
+    const timeoutMs = 1500
     const timeout = setTimeout(() => {
       stop()
       usedFallback = true

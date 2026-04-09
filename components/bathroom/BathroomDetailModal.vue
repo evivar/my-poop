@@ -93,17 +93,7 @@
               {{ $t('photos.noPhotos') }}
             </div>
             <div v-if="userId && directPhotoCount < 5" class="mt-2">
-              <button
-                v-if="isNative"
-                type="button"
-                class="inline-flex items-center gap-1.5 px-2.5 py-1.5 border border-dashed border-gray-600 rounded-lg cursor-pointer hover:border-gray-400 transition-colors text-xs text-gray-400"
-                @click="onAddBathroomPhotoNative"
-              >
-                <UIcon name="i-heroicons-camera" />
-                <span>{{ $t('photos.addPhoto') }}</span>
-              </button>
               <label
-                v-else
                 class="inline-flex items-center gap-1.5 px-2.5 py-1.5 border border-dashed border-gray-600 rounded-lg cursor-pointer hover:border-gray-400 transition-colors text-xs text-gray-400"
               >
                 <UIcon name="i-heroicons-camera" />
@@ -197,7 +187,6 @@ const { fetchUserVotes } = useReviewVotes()
 const { refreshBathroom } = useBathrooms()
 const { toggleFavorite, isFavorite } = useFavorites()
 const { validateImage, uploadPhoto, getPhotoUrl, fetchPhotosForBathroom, fetchDirectBathroomPhotoCount } = usePhotoUpload()
-const { isNative, pickWithPrompt } = usePhotoCapture()
 const { share } = useShare()
 const { bathroomDetailOpen, selectedBathroom, openBathroomForm } = useAppModals()
 const toast = useToast()
@@ -307,16 +296,6 @@ const onAddBathroomPhoto = async (e: Event) => {
   if (!input.files?.[0]) return
   await processAndUploadBathroomPhoto(input.files[0])
   input.value = ''
-}
-
-const onAddBathroomPhotoNative = async () => {
-  try {
-    const file = await pickWithPrompt()
-    if (!file) return
-    await processAndUploadBathroomPhoto(file)
-  } catch {
-    toast.add({ title: t('photos.cameraError'), color: 'error' })
-  }
 }
 
 const onReviewSubmitted = async () => {
