@@ -71,16 +71,27 @@ const filteredBathrooms = computed(() => {
 })
 
 const mapContainer = ref<HTMLElement | null>(null)
-const defaultCenter: [number, number] = [40.4168, -3.7038]
+
+// Country detectado server-side via x-vercel-ip-country / cf-ipcountry.
+// Si está disponible, lo usamos para elegir un fallback más cercano al usuario
+// (p.ej. Tokyo para JP) en vez del Madrid hardcoded.
+const userCountry = useState<string | null>('userCountry', () => null)
+const defaultCenter = computed<[number, number]>(() => {
+  if (userCountry.value) {
+    const city = getCityForCountryCode(userCountry.value)
+    if (city) return getCityCenter(city)
+  }
+  return [40.4168, -3.7038] // Madrid: fallback de último recurso
+})
 
 let map: any = null
 let clusterGroup: any = null
 let userMarker: any = null
 let L: any = null
 let moveendTimer: ReturnType<typeof setTimeout> | null = null
-// True si arrancamos con el fallback Madrid porque la geolocalización tardó
-// más que el timeout. Se usa para que el watcher de userCoords haga flyTo
-// una única vez cuando las coords reales lleguen tarde.
+// True si arrancamos con el fallback (no la ubicación real del usuario) porque
+// la geolocalización tardó más que el timeout. Se usa para que el watcher de
+// userCoords haga flyTo una única vez cuando las coords reales lleguen tarde.
 let usedFallback = false
 const locating = ref(false)
 
@@ -128,13 +139,13 @@ onMounted(async () => {
       return
     }
     // 1.5s da margen al usuario para aceptar el dialog del navegador.
-    // Si tarda más, mostramos el fallback y el watcher hará flyTo cuando
-    // lleguen las coords reales (ver el watcher de userCoords más abajo).
+    // Si tarda más, mostramos el fallback (país detectado o Madrid) y el
+    // watcher hará flyTo cuando lleguen las coords reales.
     const timeoutMs = 1500
     const timeout = setTimeout(() => {
       stop()
       usedFallback = true
-      resolve(defaultCenter)
+      resolve(defaultCenter.value)
     }, timeoutMs)
 
     const stop = watch(userCoords, (c) => {

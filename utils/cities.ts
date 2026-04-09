@@ -157,3 +157,76 @@ export function getCityCenter(city: City): [number, number] {
   const [s, w, n, e] = city.bbox
   return [(s + n) / 2, (w + e) / 2]
 }
+
+/**
+ * Mapeo ISO-3166-1 alpha-2 → nombre de país tal como aparece en CITIES.
+ * Solo incluye los países que TENEMOS en CITIES (no es un mapeo exhaustivo).
+ * Cuando se añade una ciudad nueva de un país nuevo, hay que añadir su código aquí.
+ */
+const COUNTRY_CODE_TO_NAME: Record<string, string> = {
+  ES: 'Spain',
+  MY: 'Malaysia',
+  GB: 'United Kingdom',
+  FR: 'France',
+  DE: 'Germany',
+  NL: 'Netherlands',
+  IT: 'Italy',
+  PT: 'Portugal',
+  CZ: 'Czech Republic',
+  IE: 'Ireland',
+  AT: 'Austria',
+  DK: 'Denmark',
+  GR: 'Greece',
+  HU: 'Hungary',
+  SE: 'Sweden',
+  NO: 'Norway',
+  FI: 'Finland',
+  PL: 'Poland',
+  BE: 'Belgium',
+  CH: 'Switzerland',
+  IS: 'Iceland',
+  US: 'USA',
+  CA: 'Canada',
+  MX: 'Mexico',
+  CU: 'Cuba',
+  BR: 'Brazil',
+  PE: 'Peru',
+  CL: 'Chile',
+  AR: 'Argentina',
+  JP: 'Japan',
+  TH: 'Thailand',
+  SG: 'Singapore',
+  CN: 'China',
+  HK: 'China', // Hong Kong devuelve HK pero está bajo China en CITIES
+  KR: 'South Korea',
+  TW: 'Taiwan',
+  IN: 'India',
+  ID: 'Indonesia',
+  PH: 'Philippines',
+  VN: 'Vietnam',
+  AU: 'Australia',
+  AE: 'United Arab Emirates',
+  IL: 'Israel',
+  QA: 'Qatar',
+  SA: 'Saudi Arabia',
+  ZA: 'South Africa',
+  EG: 'Egypt',
+  MA: 'Morocco',
+  KE: 'Kenya',
+  TR: 'Turkey',
+}
+
+/**
+ * Dado un código de país (alpha-2), devuelve la primera ciudad que tenemos
+ * en CITIES de ese país, o undefined si no hay match.
+ *
+ * Ejemplos:
+ *   getCityForCountryCode('JP') → Tokyo
+ *   getCityForCountryCode('ES') → Madrid (la primera de España en CITIES)
+ *   getCityForCountryCode('XX') → undefined
+ */
+export function getCityForCountryCode(code: string): City | undefined {
+  const country = COUNTRY_CODE_TO_NAME[code.toUpperCase()]
+  if (!country) return undefined
+  return CITIES.find(c => c.country === country)
+}

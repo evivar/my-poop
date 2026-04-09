@@ -16,6 +16,7 @@
     "@nuxtjs/i18n": "^10.2.4",
     "@nuxtjs/supabase": "^2.0.4",
     "@tensorflow/tfjs": "^4.22.0",
+    "@vercel/analytics": "^2.0.1",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",

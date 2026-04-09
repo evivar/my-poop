@@ -34,6 +34,7 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     '@nuxtjs/i18n',
     '@vite-pwa/nuxt',
+    '@vercel/analytics/nuxt',
   ],
 
   pwa: {
