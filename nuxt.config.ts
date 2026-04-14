@@ -85,7 +85,7 @@ export default defineNuxtConfig({
       callback: '/confirm',
       include: undefined,
       // Rutas públicas (SEO/landing) que no deben redirigir al login
-      exclude: ['/city/**', '/bathroom/**'],
+      exclude: ['/city/**', '/bathroom/**', '/about', '/privacy'],
       cookieRedirect: false,
     },
   },

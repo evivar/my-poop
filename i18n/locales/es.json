@@ -3,6 +3,13 @@
     "name": "My Poop",
     "tagline": "Encuentra los mejores baños cerca de ti"
   },
+  "nav": {
+    "about": "Acerca de",
+    "privacy": "Política de Privacidad"
+  },
+  "about": {
+    "title": "Acerca de"
+  },
   "auth": {
     "login": "Iniciar Sesión",
     "register": "Registrarse",

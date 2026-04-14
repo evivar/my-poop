@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-6xl mx-auto p-4 sm:p-6 overflow-y-auto h-full space-y-6">
+  <div class="max-w-6xl mx-auto p-4 sm:p-6 space-y-6">
     <!-- Header -->
     <div class="flex items-center gap-3">
       <UButton
@@ -91,6 +91,7 @@
 
 <script setup lang="ts">
 import { CITIES, getCityBySlug, getCityCenter } from '~/utils/cities'
+
 
 const route = useRoute()
 const slugParam = route.params.slug as string

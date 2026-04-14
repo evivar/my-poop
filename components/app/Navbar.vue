@@ -42,6 +42,16 @@ const userMenuItems = computed(() => [
     to: '/profile',
   }],
   [{
+    label: t('nav.about'),
+    icon: 'i-heroicons-information-circle',
+    to: '/about',
+  },
+  {
+    label: t('nav.privacy'),
+    icon: 'i-heroicons-shield-check',
+    to: '/privacy',
+  }],
+  [{
     label: t('auth.logout'),
     icon: 'i-heroicons-arrow-right-on-rectangle',
     onSelect: logout,

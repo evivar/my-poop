@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl mx-auto p-6 overflow-y-auto h-full">
+  <div class="max-w-4xl mx-auto p-6">
     <div class="flex items-center gap-3 mb-4">
       <UButton
         icon="i-heroicons-arrow-left"

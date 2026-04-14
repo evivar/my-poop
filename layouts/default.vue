@@ -1,12 +1,14 @@
 <template>
-  <div class="h-screen flex flex-col overflow-hidden">
+  <div class="h-screen flex flex-col">
     <AppNavbar />
-    <main class="flex-1 relative min-h-0">
+    <main class="flex-1 min-h-0" :class="isMapPage ? 'overflow-hidden' : 'overflow-y-auto'">
       <slot />
     </main>
-    <AuthLoginModal />
-    <AuthRegisterModal />
-    <BathroomDetailModal />
-    <BathroomForm />
+    <AppFooter />
   </div>
 </template>
+
+<script setup lang="ts">
+const route = useRoute()
+const isMapPage = computed(() => route.path === '/')
+</script>

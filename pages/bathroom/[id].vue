@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-3xl mx-auto p-6 overflow-y-auto h-full">
+  <div class="max-w-3xl mx-auto p-6">
     <div v-if="!bathroom" class="text-center py-16 text-gray-400">
       {{ $t('common.notFound') }}
     </div>
@@ -80,6 +80,7 @@
 
 <script setup lang="ts">
 import type { Review, Photo } from '~/types'
+
 
 const route = useRoute()
 const { fetchBathroomById } = useBathrooms()

@@ -3,6 +3,13 @@
     "name": "My Poop",
     "tagline": "Find the best bathrooms near you"
   },
+  "nav": {
+    "about": "About",
+    "privacy": "Privacy Policy"
+  },
+  "about": {
+    "title": "About"
+  },
   "auth": {
     "login": "Log In",
     "register": "Sign Up",
