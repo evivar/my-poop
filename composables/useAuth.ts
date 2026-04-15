@@ -1,4 +1,5 @@
 import type { Profile } from '~/types'
+import { Capacitor } from '@capacitor/core'
 
 export const useAuth = () => {
   const supabase = useSupabaseClient()
@@ -37,11 +38,15 @@ export const useAuth = () => {
   }
 
   const loginWithGoogle = async () => {
+    // En nativo, redirigimos al custom scheme para que Android intercepte
+    // el callback y abra la app en vez del navegador externo.
+    const redirectTo = Capacitor.isNativePlatform()
+      ? 'com.mypoop.app://confirm'
+      : `${window.location.origin}/confirm`
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: {
-        redirectTo: `${window.location.origin}/confirm`,
-      },
+      options: { redirectTo },
     })
     if (error) throw error
   }

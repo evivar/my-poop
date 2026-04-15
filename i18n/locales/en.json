@@ -8,7 +8,13 @@
     "privacy": "Privacy Policy"
   },
   "about": {
-    "title": "About"
+    "title": "About",
+    "stats": {
+      "bathrooms": "Bathrooms",
+      "cities": "Cities",
+      "countries": "Countries",
+      "growing": "...and counting. New cities added every week."
+    }
   },
   "auth": {
     "login": "Log In",
@@ -139,6 +145,10 @@
     "findNearest": "Nearest bathroom",
     "found": "Nearest bath found within {distance} - {name}",
     "notFound": "No bathrooms found nearby"
+  },
+  "pwa": {
+    "installTitle": "Install My Poop",
+    "installSteps": "Tap Share (□↑) then \"Add to Home Screen\""
   },
   "city": {
     "titlePrefix": "Public bathrooms in",

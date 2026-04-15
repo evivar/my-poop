@@ -14,7 +14,27 @@
     </div>
 
     <div v-if="previews.length < maxPhotos">
+      <div v-if="isNative" class="flex gap-2 flex-wrap">
+        <button
+          type="button"
+          class="flex items-center gap-2 px-3 py-2 border border-dashed border-gray-600 rounded-lg cursor-pointer hover:border-gray-400 transition-colors text-sm text-gray-400"
+          @click="onTakePhoto"
+        >
+          <UIcon name="i-heroicons-camera" />
+          <span>{{ $t('photos.takePhoto') }}</span>
+        </button>
+        <button
+          type="button"
+          class="flex items-center gap-2 px-3 py-2 border border-dashed border-gray-600 rounded-lg cursor-pointer hover:border-gray-400 transition-colors text-sm text-gray-400"
+          @click="onPickFromGallery"
+        >
+          <UIcon name="i-heroicons-photo" />
+          <span>{{ $t('photos.chooseFromGallery') }}</span>
+        </button>
+      </div>
+
       <label
+        v-else
         class="flex items-center gap-2 px-3 py-2 border border-dashed border-gray-600 rounded-lg cursor-pointer hover:border-gray-400 transition-colors text-sm text-gray-400"
       >
         <UIcon name="i-heroicons-camera" />
@@ -45,6 +65,7 @@ const props = withDefaults(defineProps<{
 const files = defineModel<File[]>('files', { default: () => [] })
 
 const { validateImage } = usePhotoUpload()
+const { isNative, takePhoto, pickFromGallery } = usePhotoCapture()
 const { t } = useI18n()
 
 const previews = ref<{ url: string; file: File }[]>([])
@@ -87,6 +108,34 @@ const onFileSelect = async (e: Event) => {
 
   syncFiles()
   input.value = ''
+}
+
+const onTakePhoto = async () => {
+  error.value = ''
+  try {
+    const file = await takePhoto()
+    if (!file) return
+    await processFile(file)
+    syncFiles()
+  }
+  catch {
+    error.value = t('photos.cameraError')
+  }
+}
+
+const onPickFromGallery = async () => {
+  error.value = ''
+  try {
+    const newFiles = await pickFromGallery(remainingSlots.value)
+    for (const file of newFiles) {
+      if (previews.value.length >= props.maxPhotos) break
+      await processFile(file)
+    }
+    syncFiles()
+  }
+  catch {
+    error.value = t('photos.cameraError')
+  }
 }
 
 const removeFile = (index: number) => {

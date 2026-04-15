@@ -8,7 +8,13 @@
     "privacy": "Política de Privacidad"
   },
   "about": {
-    "title": "Acerca de"
+    "title": "Acerca de",
+    "stats": {
+      "bathrooms": "Baños",
+      "cities": "Ciudades",
+      "countries": "Países",
+      "growing": "...y creciendo. Nuevas ciudades cada semana."
+    }
   },
   "auth": {
     "login": "Iniciar Sesión",
@@ -139,6 +145,10 @@
     "findNearest": "Baño más cercano",
     "found": "Baño más cercano a {distance} - {name}",
     "notFound": "No se encontraron baños cerca"
+  },
+  "pwa": {
+    "installTitle": "Instalar My Poop",
+    "installSteps": "Toca Compartir (□↑) y luego \"Añadir a pantalla de inicio\""
   },
   "city": {
     "titlePrefix": "Baños públicos en",

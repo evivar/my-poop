@@ -1,3 +1,6 @@
+import { Capacitor } from '@capacitor/core'
+import { Share } from '@capacitor/share'
+
 export type ShareOptions = {
   title?: string
   text?: string
@@ -13,9 +16,22 @@ const isUserCancel = (e: any) => {
 }
 
 export const useShare = () => {
+  const isNative = Capacitor.isNativePlatform()
+
   const share = async (options: ShareOptions): Promise<ShareResult> => {
+    // Nativo: usar Capacitor Share para invocar el share sheet del SO
+    if (isNative) {
+      try {
+        await Share.share(options)
+        return 'shared'
+      }
+      catch (e: any) {
+        if (isUserCancel(e)) return 'cancelled'
+        throw e
+      }
+    }
+
     // Web Share API: disponible en mobile Safari y Chrome modernos.
-    // Lanza el share sheet nativo del SO desde el navegador.
     if (typeof navigator !== 'undefined' && typeof (navigator as any).share === 'function') {
       try {
         await (navigator as any).share(options)
@@ -23,7 +39,6 @@ export const useShare = () => {
       }
       catch (e: any) {
         if (isUserCancel(e)) return 'cancelled'
-        // Cualquier otro error cae al fallback de clipboard.
       }
     }
 

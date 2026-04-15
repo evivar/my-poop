@@ -22,3 +22,11 @@ logs
 .env.*
 !.env.example
 
+# Capacitor native projects (regenerable)
+android/
+ios/
+
+# Signing keys
+*.jks
+*.keystore
+
