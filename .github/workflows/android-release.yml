@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'v*'
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -48,12 +50,13 @@ jobs:
 
       - name: Rename APK
         run: |
-          VERSION="${GITHUB_REF_NAME}"
+          VERSION="${{ github.event.release.tag_name || github.ref_name }}"
           cp android/app/build/outputs/apk/release/app-release.apk "my-poop-${VERSION}.apk"
 
-      - name: Create GitHub Release
+      - name: Upload APK to Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.event.release.tag_name || github.ref_name }}
           files: my-poop-*.apk
           generate_release_notes: true
         env:
