@@ -9,6 +9,7 @@ export default defineNuxtConfig({
       meta: [
         { name: 'description', content: 'Discover, rate and review public bathrooms near you. Find clean restrooms with real user ratings on cleanliness, privacy and toilet paper quality.' },
         { name: 'theme-color', content: '#111827' },
+        { name: 'google-site-verification', content: 'wulynoKg5lWoE3e818tywJVGD2roshibnsRwZaDZhv0' },
         // Open Graph
         { property: 'og:type', content: 'website' },
         { property: 'og:title', content: 'My Poop — Find & Review Public Bathrooms' },
@@ -35,7 +36,16 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@vite-pwa/nuxt',
     '@vercel/analytics/nuxt',
+    '@nuxtjs/sitemap',
   ],
+
+  site: {
+    url: 'https://my-poop.vercel.app',
+  },
+
+  sitemap: {
+    sources: ['/api/__sitemap__/urls'],
+  },
 
   pwa: {
     registerType: 'autoUpdate',
