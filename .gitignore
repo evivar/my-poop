@@ -22,8 +22,8 @@ logs
 .env.*
 !.env.example
 
-# Capacitor native projects (regenerable)
-android/
+# Capacitor native projects
+# android/ se commitea porque tiene cambios manuales (AndroidManifest, iconos)
 ios/
 
 # Signing keys
