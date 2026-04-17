@@ -1,133 +1,143 @@
-# My Poop - Find & Review Public Bathrooms
+<p align="center">
+  <img src="public/favicon-96x96.png" alt="My Poop" width="80" />
+</p>
 
-Find the best bathrooms near you. Rate, review, and share your experience with a growing community of users who believe everyone deserves a clean restroom.
+<h1 align="center">My Poop</h1>
 
-## What is My Poop?
+<p align="center">
+  <strong>Find & review public bathrooms. Wherever you are.</strong>
+</p>
 
-My Poop is a community-driven app that helps you find, rate, and review public bathrooms wherever you are. Whether you're traveling, commuting, or just out and about, My Poop helps you locate the nearest restroom and know what to expect before you walk in.
+<p align="center">
+  <a href="https://my-poop.vercel.app">Web App</a> &nbsp;·&nbsp;
+  <a href="https://github.com/evivar/my-poop/releases/latest">Android APK</a> &nbsp;·&nbsp;
+  <a href="https://my-poop.vercel.app/about">About</a>
+</p>
 
-Available as a **web app** and **Android app**.
+<p align="center">
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License" />
+  <img src="https://img.shields.io/badge/bathrooms-25%2C700%2B-blue" alt="25,700+ bathrooms" />
+  <img src="https://img.shields.io/badge/cities-84-orange" alt="84 cities" />
+  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen" alt="PRs welcome" />
+</p>
+
+---
+
+## The problem
+
+You're traveling, you REALLY need to go, and Google Maps shows a pin — but is it clean? Is it free? Does it even still exist?
+
+**My Poop** is a community-driven public bathroom map with real reviews from real people. Cleanliness, privacy, toilet paper quality — the stuff that actually matters.
+
+<p align="center">
+  <img src="docs/screenshots/sos-demo.gif" alt="SOS button demo" width="300" />
+  <br />
+  <em>Find the nearest bathroom in one tap</em>
+</p>
+
+## Screenshots
+
+<p align="center">
+  <img src="docs/screenshots/map.png" alt="Map view" width="200" />
+  &nbsp;&nbsp;
+  <img src="docs/screenshots/detail.png" alt="Bathroom detail" width="200" />
+  &nbsp;&nbsp;
+  <img src="docs/screenshots/review.png" alt="Leave a review" width="200" />
+  &nbsp;&nbsp;
+  <img src="docs/screenshots/city.png" alt="City page" width="200" />
+</p>
 
 ## Features
 
-### Interactive Map
+- **25,700+ bathrooms** seeded from OpenStreetMap across 84 cities in 40+ countries
+- **Real reviews** — rate cleanliness, privacy, and toilet paper quality on a 1-5 roll scale
+- **Interactive map** with clustering, search, and filters (type, free, accessible, rating)
+- **SOS button** — find the nearest bathroom instantly
+- **City pages** — landing pages for every city with stats and top rated bathrooms
+- **Edit OSM bathrooms** — help improve imported data (name, hours, accessibility)
+- **Photos** — upload and browse community photos with NSFW detection
+- **Real-time status** — report "no paper", "dirty", "closed" so others know what to expect
+- **Get Directions** — one tap to Google Maps / Apple Maps with walking directions
+- **Share** — send any bathroom to friends via native share or clipboard
+- **Favorites** — save bathrooms you visit frequently
+- **PWA** — install from browser on any device, works offline
+- **Android app** — native APK with GPS and camera integration
+- **iOS** — install as PWA from Safari (Add to Home Screen)
+- **Multi-language** — English and Spanish
+- **Dark mode** — easy on the eyes during those late-night emergencies
 
-Browse bathrooms near you on a full-screen interactive map. Bathroom locations are grouped into clusters when zoomed out, making it easy to explore areas with many options. Your current location is shown on the map so you always know what's nearby.
+## Try it
 
-### Nearest Bathroom - SOS Button
+| Platform | How |
+|----------|-----|
+| **Web** | [my-poop.vercel.app](https://my-poop.vercel.app) |
+| **Android** | Download APK from [Releases](https://github.com/evivar/my-poop/releases/latest) |
+| **iOS** | Open the web app in Safari, tap Share, then "Add to Home Screen" |
 
-Need a bathroom right now? Tap the SOS button and the app instantly finds the closest bathroom to you, shows the distance, and opens its details. No scrolling, no searching — just one tap.
+## Tech stack
 
-### Search & Filters
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Vue 3, Nuxt 4, TypeScript |
+| UI | Nuxt UI v4, Tailwind CSS |
+| Map | Leaflet + MarkerCluster |
+| Backend | Supabase (PostgreSQL, Auth, Storage, RLS) |
+| Data | OpenStreetMap (Overpass API) |
+| Hosting | Vercel (Edge, Analytics) |
+| Mobile | Capacitor (Android), PWA (iOS) |
+| Content safety | NSFW.js (TensorFlow) |
 
-Search for any address or place to explore bathrooms in that area. Use filters to narrow down results by:
+## Getting started
 
-- **Type**: Public restroom, restaurant, gas station, mall, cafe, hotel, hospital, and more
-- **Price**: Free or paid
-- **Accessibility**: Wheelchair accessible
-- **Favorites**: Show only your saved bathrooms
-- **Minimum rating**: Set a quality threshold
+### Prerequisites
 
-### Bathroom Details
+- Node.js >= 22
+- npm
+- A [Supabase](https://supabase.com) project
 
-Every bathroom includes detailed information:
+### Setup
 
-- **Overall rating** on a 1-5 scale
-- **Cleanliness**, **privacy**, and **toilet paper quality** scores
-- **Type** and **price** badges
-- **Directions** to find it (e.g., "Inside the mall, 2nd floor near food court")
-- **Operating hours**
-- **Photo gallery** uploaded by the community
-- **Get Directions** button that opens Google Maps or Apple Maps with walking directions
+```bash
+# Clone
+git clone https://github.com/evivar/my-poop.git
+cd my-poop
 
-### Reviews & Ratings
+# Install
+npm install
 
-Leave detailed reviews with scores for overall experience, cleanliness, privacy, and toilet paper quality. Add a written comment and attach photos to share the real state of the bathroom. Reviews are sorted by helpfulness so the most useful ones appear first.
+# Configure environment
+cp .env.example .env
+# Fill in SUPABASE_URL and SUPABASE_KEY
 
-Mark reviews as helpful with the thumbs-up button so other users can quickly see which reviews are most trustworthy.
+# Run dev server
+npm run dev
+```
 
-### Real-Time Status Alerts
+### Seed bathrooms from OpenStreetMap
 
-Report the current state of a bathroom so others know what to expect right now:
+```bash
+# All 84 cities
+npm run seed:osm
 
-- **No toilet paper**
-- **Dirty**
-- **Closed**
-- **Out of order**
-- **Flooded**
+# Single city
+npm run seed:osm madrid
+```
 
-When multiple users report the same issue, it shows up as an active alert on the bathroom. Status reports expire automatically, so alerts always reflect the current situation.
+## Contributing
 
-### Photos
+Contributions are welcome! Whether it's a bug fix, a new feature, or a bathroom in a city we don't cover yet.
 
-Upload photos of bathrooms — either when creating a new listing, as part of a review, or anytime you visit. On the mobile app you can take a photo directly with your camera or pick existing ones from your gallery; on the web app the standard file picker is used. All images are validated for appropriate content before being published. View photos in a full-screen gallery with a single tap.
+1. Fork the repo
+2. Create your branch (`git checkout -b feat/my-feature`)
+3. Commit your changes
+4. Push and open a PR
 
-### Favorites
+## License
 
-Save bathrooms you visit frequently with a single tap on the heart icon. Access your favorites list from your profile or filter the map to show only your saved locations.
+[MIT](LICENSE)
 
-### Share
+## Author
 
-Share any bathroom with friends via the native share menu on your device, or copy the link to your clipboard. The shared link includes the bathroom name and rating.
+**Ernesto Vivar** — Software engineer from Spain, based in Kuala Lumpur.
 
-### Add New Bathrooms
-
-Found a bathroom that's not on the map? Add it in seconds. Search for the address, drag the marker to the exact location, fill in the details, and upload photos. Your contribution helps the entire community.
-
-### User Profile
-
-Manage your account, view all your reviews, browse your favorites, and update your password — all from your profile page.
-
-### Content Moderation
-
-Report inappropriate reviews to keep the community safe. A moderation team reviews reports and can approve, remove content, or ban users who violate community guidelines.
-
-### Multi-Language Support
-
-Available in **English** and **Spanish**. The app automatically adapts to your preferred language.
-
-### Mobile App
-
-Available as a native Android app with full GPS integration. The app uses your phone's native location services for faster and more accurate positioning. Install it directly on your device and access it from your home screen.
-
-## Privacy & Permissions
-
-My Poop only requests the permissions it needs to work, and only collects the data needed to provide its features.
-
-### Permissions we request
-
-- **Location** (`ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`) — Used to show your position on the map, find the nearest bathroom with the SOS button, and sort results by distance. Location is only accessed while you're actively using the app.
-- **Camera** (`CAMERA`) — Only used when you tap "Take photo" to add a picture to a bathroom or review. The app never opens the camera in the background.
-- **Photos / Media** (`READ_MEDIA_IMAGES`) — Only used when you tap "Choose from gallery" to attach existing photos. You pick exactly which images to share; the app never scans your gallery on its own.
-- **Internet** (`INTERNET`, `ACCESS_NETWORK_STATE`) — Required to load the map, sync bathrooms, reviews, and photos.
-
-The app does **not** request access to your microphone, contacts, calendar, SMS, or call logs.
-
-### Data we collect
-
-- **Account information** — Email address and password (stored encrypted) so you can sign in.
-- **Your contributions** — Bathrooms you add, reviews, ratings, status reports, photos, and favorites. This content is public by design so the community can benefit from it.
-- **Location** — Only when you actively use the map or the SOS button, to find nearby bathrooms. Your location is **not** tracked in the background and is **not** stored on our servers.
-
-### What we don't do
-
-- We don't track your location when the app is closed.
-- We don't sell or share your personal data with third parties.
-- We don't show ads or use advertising trackers.
-
-### Content safety
-
-All uploaded photos are automatically validated for appropriate content before being published. Reviews and listings can be reported at any time, and the moderation team can remove content or ban users who violate community guidelines.
-
-## The Rating System
-
-My Poop uses a unique toilet paper roll rating system (1-5 rolls) to rate bathrooms across four categories:
-
-- **Overall Rating** - Your general experience
-- **Cleanliness** - How clean is the bathroom?
-- **Privacy** - Do the stalls provide adequate privacy?
-- **Toilet Paper Quality** - Is the toilet paper decent?
-
-## Community-Driven
-
-My Poop is built by and for its users. Every review, photo, status report, and bathroom listing comes from the community. The more people contribute, the more useful the app becomes for everyone.
+Built because finding a decent bathroom while traveling shouldn't require 3 apps and a prayer.
