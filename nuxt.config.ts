@@ -45,6 +45,10 @@ export default defineNuxtConfig({
 
   sitemap: {
     sources: ['/api/__sitemap__/urls'],
+    // Divide en múltiples sitemaps de max 1000 URLs cada uno.
+    // Google prefiere sitemaps pequeños y los procesa más rápido.
+    sitemaps: true,
+    defaultSitemapsChunkSize: 1000,
   },
 
   pwa: {

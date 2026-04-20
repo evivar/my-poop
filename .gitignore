@@ -30,3 +30,7 @@ ios/
 *.jks
 *.keystore
 
+.claude
+,github
+.playwright-mcp
+    
