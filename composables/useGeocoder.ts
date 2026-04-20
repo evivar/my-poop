@@ -17,10 +17,11 @@ interface PhotonFeature {
   }
 }
 
+// Module-level debounce timer movido dentro del composable para que cada
+// instancia (SearchBox vs BathroomForm) tenga su propio timer.
 export const useGeocoder = () => {
   const results = ref<GeocoderResult[]>([])
   const loading = ref(false)
-
   let debounceTimer: ReturnType<typeof setTimeout> | null = null
 
   const search = (query: string) => {

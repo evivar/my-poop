@@ -11,10 +11,19 @@
       variant="solid"
       size="lg"
       class="absolute bottom-6 left-16 z-1000 rounded-full shadow-lg"
-      title="My location"
+      :title="$t('map.locateMe')"
+      :aria-label="$t('map.locateMe')"
       :loading="locating"
       @click="goToMyLocation"
     />
+    <!-- Empty state: no bathrooms visible -->
+    <div
+      v-if="filteredBathrooms.length === 0 && !loadingBathrooms"
+      class="absolute top-20 left-1/2 -translate-x-1/2 z-1000 bg-gray-900/90 backdrop-blur px-4 py-2 rounded-lg text-sm text-gray-400 shadow-lg"
+    >
+      {{ $t('map.noBathroomsInArea') }}
+    </div>
+
     <div class="absolute bottom-6 right-6 z-1000 flex flex-col items-center gap-3">
       <MapNearestBathroomButton @found="onNearestFound" />
       <UButton
@@ -95,12 +104,14 @@ let moveendTimer: ReturnType<typeof setTimeout> | null = null
 // userCoords haga flyTo una única vez cuando las coords reales lleguen tarde.
 let usedFallback = false
 const locating = ref(false)
+const loadingBathrooms = ref(true)
 
 // Carga baños dentro del bbox actual del mapa, expandido un 50% en cada
 // dirección para prefetch. Evita re-fetches mientras el usuario panea dentro
 // del margen pre-cargado.
 const loadBathroomsForViewport = async () => {
   if (!map) return
+  loadingBathrooms.value = true
   const bounds = map.getBounds()
   const sw = bounds.getSouthWest()
   const ne = bounds.getNorthEast()
@@ -116,6 +127,9 @@ const loadBathroomsForViewport = async () => {
   }
   catch (e) {
     console.error('Failed to fetch bathrooms for viewport:', e)
+  }
+  finally {
+    loadingBathrooms.value = false
   }
 }
 
@@ -287,7 +301,7 @@ const updateMarkers = (baths: Bathroom[]) => {
         iconAnchor: [16, 32],
       }),
     })
-    marker.bindTooltip(`${b.name} - ${b.avg_rating.toFixed(1)}`)
+    marker.bindTooltip(`${b.name} - ${(b.avg_rating ?? 0).toFixed(1)}`)
     marker.on('click', () => openBathroomDetail(b))
     clusterGroup.addLayer(marker)
   })

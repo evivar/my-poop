@@ -1,16 +1,32 @@
 import type { Photo } from '~/types'
 
 let nsfwModel: any = null
+let nsfwModelTimer: ReturnType<typeof setTimeout> | null = null
 
 export const usePhotoUpload = () => {
   const supabase = useSupabaseClient()
   const { userId } = useAuth()
 
   const loadNsfwModel = async () => {
-    if (nsfwModel) return nsfwModel
+    // Resetear el timer de auto-dispose cada vez que se usa
+    if (nsfwModelTimer) clearTimeout(nsfwModelTimer)
+    if (nsfwModel) {
+      scheduleDispose()
+      return nsfwModel
+    }
     const nsfwjs = await import('nsfwjs')
     nsfwModel = await nsfwjs.load()
+    scheduleDispose()
     return nsfwModel
+  }
+
+  // Liberar el modelo (~50 MB) si no se usa en 5 minutos
+  const scheduleDispose = () => {
+    nsfwModelTimer = setTimeout(() => {
+      if (nsfwModel?.dispose) nsfwModel.dispose()
+      nsfwModel = null
+      nsfwModelTimer = null
+    }, 5 * 60 * 1000)
   }
 
   const validateImage = async (file: File): Promise<boolean> => {

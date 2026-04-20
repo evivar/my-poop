@@ -1,13 +1,13 @@
 import type { Bathroom } from '~/types'
 
-const loginOpen = ref(false)
-const registerOpen = ref(false)
-const bathroomDetailOpen = ref(false)
-const bathroomFormOpen = ref(false)
-const selectedBathroom = ref<Bathroom | null>(null)
-const editingBathroom = ref<Bathroom | null>(null)
-
 export const useAppModals = () => {
+  const loginOpen = useState('modal-login', () => false)
+  const registerOpen = useState('modal-register', () => false)
+  const bathroomDetailOpen = useState('modal-bathroom-detail', () => false)
+  const bathroomFormOpen = useState('modal-bathroom-form', () => false)
+  const selectedBathroom = useState<Bathroom | null>('modal-selected-bathroom', () => null)
+  const editingBathroom = useState<Bathroom | null>('modal-editing-bathroom', () => null)
+
   const openLogin = () => {
     registerOpen.value = false
     loginOpen.value = true
@@ -23,8 +23,6 @@ export const useAppModals = () => {
     bathroomDetailOpen.value = true
   }
 
-  // Si se pasa un baño, el form abre en modo edit (pre-rellenado).
-  // Si no, abre en modo create.
   const openBathroomForm = (editing?: Bathroom) => {
     editingBathroom.value = editing ?? null
     bathroomFormOpen.value = true

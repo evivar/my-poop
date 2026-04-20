@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'My Poop — Find & Review Public Bathrooms',
-      htmlAttrs: { lang: 'en' },
+      // lang se gestiona dinámicamente por @nuxtjs/i18n
       meta: [
         { name: 'description', content: 'Discover, rate and review public bathrooms near you. Find clean restrooms with real user ratings on cleanliness, privacy and toilet paper quality.' },
         { name: 'theme-color', content: '#111827' },
@@ -14,12 +14,12 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         { property: 'og:title', content: 'My Poop — Find & Review Public Bathrooms' },
         { property: 'og:description', content: 'Discover, rate and review public bathrooms near you. Real ratings from real people.' },
-        { property: 'og:image', content: '/og-image.png' },
+        { property: 'og:image', content: 'https://my-poop.vercel.app/og-image.png' },
         // Twitter
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'My Poop — Find & Review Public Bathrooms' },
         { name: 'twitter:description', content: 'Discover, rate and review public bathrooms near you. Real ratings from real people.' },
-        { name: 'twitter:image', content: '/og-image.png' },
+        { name: 'twitter:image', content: 'https://my-poop.vercel.app/og-image.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
@@ -71,13 +71,19 @@ export default defineNuxtConfig({
     },
     workbox: {
       navigateFallback: '/',
-      // Cachear assets estáticos. Los HTML/JS/CSS/imagen del build entran al
-      // service worker para que la app funcione offline / fast-load.
-      globPatterns: ['**/*.{js,css,html,png,svg,ico,webp}'],
-      // Subimos el cap a 6 MB porque nsfwjs/TensorFlow tiene chunks grandes.
-      // TODO(perf): hacer lazy-load de TF.js sólo cuando el usuario sube
-      // foto, así estos chunks no entrarían al precache de inicio.
-      maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
+      // Precachear solo CSS/HTML/images. JS se cachea on-demand via
+      // runtimeCaching (evita los ~30 MB de TF.js/nsfwjs en el install).
+      globPatterns: ['**/*.{css,html,png,svg,ico,webp}'],
+      runtimeCaching: [
+        {
+          urlPattern: /\/_nuxt\/.*\.js$/,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'js-cache',
+            expiration: { maxEntries: 100, maxAgeSeconds: 60 * 60 * 24 * 30 },
+          },
+        },
+      ],
     },
     devOptions: {
       enabled: false,
@@ -109,6 +115,11 @@ export default defineNuxtConfig({
     langDir: 'locales',
     defaultLocale: 'en',
     strategy: 'no_prefix',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_locale',
+      fallbackLocale: 'en',
+    },
   },
 
   css: ['~/assets/css/main.css'],

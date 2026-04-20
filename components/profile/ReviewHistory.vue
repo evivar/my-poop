@@ -21,13 +21,26 @@
               variant="ghost"
               size="xs"
               :loading="deleting === review.id"
-              @click="confirmDelete(review)"
+              @click="reviewToDelete = review"
             />
           </div>
         </div>
         <p v-if="review.comment" class="mt-2 text-sm">{{ review.comment }}</p>
       </div>
     </div>
+
+    <!-- Confirm delete modal -->
+    <UModal v-model:open="showDeleteModal" :title="$t('review.confirmDelete')" :description="$t('review.confirmDelete')">
+      <template #content>
+        <UCard>
+          <p class="text-sm text-gray-300 mb-4">{{ $t('review.confirmDeleteMessage') }}</p>
+          <div class="flex justify-end gap-2">
+            <UButton variant="ghost" @click="showDeleteModal = false">{{ $t('common.cancel') }}</UButton>
+            <UButton color="error" :loading="!!deleting" @click="handleDelete">{{ $t('review.delete') }}</UButton>
+          </div>
+        </UCard>
+      </template>
+    </UModal>
   </div>
 </template>
 
@@ -42,6 +55,11 @@ const { t } = useI18n()
 const reviews = ref<Review[]>([])
 const loading = ref(true)
 const deleting = ref<string | null>(null)
+const reviewToDelete = ref<Review | null>(null)
+const showDeleteModal = computed({
+  get: () => reviewToDelete.value !== null,
+  set: (v) => { if (!v) reviewToDelete.value = null },
+})
 
 const loadReviews = async () => {
   if (userId.value) {
@@ -54,16 +72,19 @@ onMounted(async () => {
   loading.value = false
 })
 
-const confirmDelete = async (review: Review) => {
-  if (!confirm(t('review.confirmDelete'))) return
-  deleting.value = review.id
+const handleDelete = async () => {
+  if (!reviewToDelete.value) return
+  deleting.value = reviewToDelete.value.id
   try {
-    await deleteOwnReview(review.id)
+    await deleteOwnReview(reviewToDelete.value.id)
     toast.add({ title: t('common.success'), color: 'success' })
+    reviewToDelete.value = null
     await loadReviews()
-  } catch (err: any) {
+  }
+  catch (err: any) {
     toast.add({ title: err.message, color: 'error' })
-  } finally {
+  }
+  finally {
     deleting.value = null
   }
 }

@@ -1,6 +1,9 @@
 <template>
   <div class="max-w-3xl mx-auto p-6">
-    <div v-if="!bathroom" class="text-center py-16 text-gray-400">
+    <div v-if="status === 'pending'" class="flex items-center justify-center py-16">
+      <UProgress animation="carousel" />
+    </div>
+    <div v-else-if="!bathroom" class="text-center py-16 text-gray-400">
       {{ $t('common.notFound') }}
     </div>
 
@@ -29,6 +32,8 @@
             v-for="photo in bathroomPhotos"
             :key="photo.id"
             :src="getPhotoUrl(photo.storage_path)"
+            :alt="`Photo of ${bathroom.name}`"
+            loading="lazy"
             class="w-28 h-24 object-cover rounded-lg border border-gray-700 hover:border-gray-500 transition-colors cursor-pointer shrink-0"
             @click="lightboxSrc = getPhotoUrl(photo.storage_path)"
           />
@@ -88,7 +93,7 @@ const { fetchReviewsForBathroom } = useReviews()
 const { fetchUserVotes } = useReviewVotes()
 const { getPhotoUrl, fetchPhotosForBathroom } = usePhotoUpload()
 
-const { data: bathroom } = await useAsyncData(
+const { data: bathroom, status } = await useAsyncData(
   `bathroom-${route.params.id}`,
   () => fetchBathroomById(route.params.id as string),
 )
@@ -97,13 +102,42 @@ useSeoMeta({
   title: () => bathroom.value ? `${bathroom.value.name} — My Poop` : 'Bathroom — My Poop',
   ogTitle: () => bathroom.value?.name ?? 'Bathroom',
   description: () => bathroom.value
-    ? `${bathroom.value.name} — Rated ${bathroom.value.avg_rating.toFixed(1)}/5. ${bathroom.value.review_count} reviews. ${bathroom.value.is_free ? 'Free' : 'Paid'} ${bathroom.value.type} restroom.`
+    ? `${bathroom.value.name} — Rated ${(bathroom.value.avg_rating ?? 0).toFixed(1)}/5. ${bathroom.value.review_count} reviews. ${bathroom.value.is_free ? 'Free' : 'Paid'} ${bathroom.value.type} restroom.`
     : 'Find and review public bathrooms near you.',
   ogDescription: () => bathroom.value
-    ? `Rated ${bathroom.value.avg_rating.toFixed(1)}/5 with ${bathroom.value.review_count} reviews.`
+    ? `Rated ${(bathroom.value.avg_rating ?? 0).toFixed(1)}/5 with ${bathroom.value.review_count} reviews.`
     : '',
-  ogImage: '/og-image.png',
+  ogImage: 'https://my-poop.vercel.app/og-image.png',
   twitterCard: 'summary',
+})
+
+// Structured data (JSON-LD) para SEO — Google puede mostrar rich results
+useHead({
+  script: bathroom.value
+    ? [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Place',
+          'name': bathroom.value.name,
+          'geo': {
+            '@type': 'GeoCoordinates',
+            'latitude': bathroom.value.latitude,
+            'longitude': bathroom.value.longitude,
+          },
+          'aggregateRating': bathroom.value.review_count > 0
+            ? {
+                '@type': 'AggregateRating',
+                'ratingValue': (bathroom.value.avg_rating ?? 0).toFixed(1),
+                'bestRating': '5',
+                'reviewCount': bathroom.value.review_count,
+              }
+            : undefined,
+          'isAccessibleForFree': bathroom.value.is_free,
+          'url': `https://my-poop.vercel.app/bathroom/${bathroom.value.id}`,
+        }),
+      }]
+    : [],
 })
 
 const reviews = ref<Review[]>([])
@@ -119,12 +153,21 @@ const loadReviews = async () => {
   reviews.value = fetched.map(r => ({ ...r, user_has_voted: votedIds.has(r.id) }))
 }
 
+let miniMap: any = null
+
 onMounted(async () => {
   if (bathroom.value) {
     await loadReviews()
     bathroomPhotos.value = await fetchPhotosForBathroom(bathroom.value.id)
     loadingReviews.value = false
     await initMiniMap()
+  }
+})
+
+onUnmounted(() => {
+  if (miniMap) {
+    miniMap.remove()
+    miniMap = null
   }
 })
 
@@ -136,7 +179,7 @@ const initMiniMap = async () => {
 
   const { latitude, longitude } = bathroom.value
 
-  const map = L.map(miniMapContainer.value, {
+  miniMap = L.map(miniMapContainer.value, {
     center: [latitude, longitude],
     zoom: 16,
     zoomControl: false,
@@ -147,7 +190,7 @@ const initMiniMap = async () => {
     attributionControl: false,
   })
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(miniMap)
 
   L.marker([latitude, longitude], {
     icon: L.icon({
@@ -155,6 +198,6 @@ const initMiniMap = async () => {
       iconSize: [32, 32],
       iconAnchor: [16, 32],
     }),
-  }).addTo(map)
+  }).addTo(miniMap)
 }
 </script>

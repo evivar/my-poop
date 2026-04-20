@@ -27,7 +27,7 @@
           </UButton>
         </form>
 
-        <USeparator label="or" class="my-4" />
+        <USeparator :label="$t('auth.or')" class="my-4" />
 
         <UButton
           icon="i-simple-icons-google"
@@ -56,6 +56,7 @@
 const { registerWithEmail, loginWithGoogle } = useAuth()
 const { registerOpen, openLogin } = useAppModals()
 const toast = useToast()
+const { t } = useI18n()
 
 const displayName = ref('')
 const email = ref('')
@@ -65,13 +66,13 @@ const loading = ref(false)
 
 const handleRegister = async () => {
   if (password.value !== confirmPassword.value) {
-    toast.add({ title: 'Passwords do not match', color: 'error' })
+    toast.add({ title: t('auth.passwordsMismatch'), color: 'error' })
     return
   }
   loading.value = true
   try {
     await registerWithEmail(email.value, password.value, displayName.value)
-    toast.add({ title: 'Check your email to confirm your account', color: 'success' })
+    toast.add({ title: t('auth.checkEmail'), color: 'success' })
     registerOpen.value = false
   } catch (err: any) {
     toast.add({ title: err.message, color: 'error' })

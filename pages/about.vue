@@ -142,7 +142,11 @@ const techStack = [
 ]
 
 useSeoMeta({
-  title: 'About — My Poop',
-  description: 'About My Poop: a free, open-source public bathroom finder with 25,700+ bathrooms across 84 cities. Built by Ernesto, a software engineer from Spain based in Kuala Lumpur.',
+  title: () => locale.value === 'es'
+    ? 'Acerca de — My Poop'
+    : 'About — My Poop',
+  description: () => locale.value === 'es'
+    ? 'My Poop: buscador gratuito de baños públicos con más de 25.700 baños en 84 ciudades. Creado por Ernesto, ingeniero de software español en Kuala Lumpur.'
+    : 'About My Poop: a free, open-source public bathroom finder with 25,700+ bathrooms across 84 cities. Built by Ernesto, a software engineer from Spain based in Kuala Lumpur.',
 })
 </script>

@@ -27,11 +27,16 @@
     "logout": "Cerrar Sesión",
     "noAccount": "¿No tienes cuenta?",
     "hasAccount": "¿Ya tienes cuenta?",
-    "confirming": "Confirmando tu cuenta..."
+    "confirming": "Confirmando tu cuenta...",
+    "or": "o",
+    "passwordsMismatch": "Las contraseñas no coinciden",
+    "checkEmail": "Revisa tu email para confirmar tu cuenta",
+    "suspended": "Tu cuenta ha sido suspendida"
   },
   "map": {
     "searchPlaceholder": "Buscar dirección o lugar...",
-    "locateMe": "Encontrar mi ubicación"
+    "locateMe": "Encontrar mi ubicación",
+    "noBathroomsInArea": "No se encontraron baños en esta zona"
   },
   "bathroom": {
     "name": "Nombre",
@@ -56,6 +61,7 @@
     "addBathroom": "Añadir Baño",
     "directionsPlaceholder": "ej. Dentro del centro comercial, 2ª planta junto al food court",
     "schedulePlaceholder": "ej. Lun-Vie 8:00-22:00",
+    "location": "Ubicación",
     "tapMapToSet": "Toca el mapa para marcar la ubicación del baño",
     "locationRequired": "Por favor, establece una ubicación para el baño",
     "getDirections": "Cómo llegar",
@@ -82,7 +88,9 @@
     "loginToReview": "Inicia sesión para dejar una reseña",
     "leaveReview": "Dejar una Reseña",
     "alreadyReviewed": "Ya has dejado una reseña para este baño.",
-    "confirmDelete": "¿Estás seguro de que quieres eliminar esta reseña?",
+    "confirmDelete": "Eliminar reseña",
+    "confirmDeleteMessage": "¿Estás seguro de que quieres eliminar esta reseña? Esta acción no se puede deshacer.",
+    "delete": "Eliminar",
     "helpful": "Útil",
     "loginToVote": "Inicia sesión para votar"
   },

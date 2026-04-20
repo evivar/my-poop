@@ -6,8 +6,8 @@
     </div>
 
     <div class="space-y-2 text-sm">
-      <div class="flex items-center gap-2">
-        <UIcon name="i-heroicons-map-pin" class="text-gray-400" />
+      <div class="flex items-center gap-2 flex-wrap">
+        <span v-if="distance" class="text-gray-400 text-xs">{{ distance }}</span>
         <UBadge :color="bathroom.is_free ? 'success' : 'warning'" variant="subtle">
           {{ bathroom.is_free ? $t('bathroom.free') : $t('bathroom.paid') }}
         </UBadge>
@@ -54,12 +54,14 @@ const props = defineProps<{
   bathroom: Bathroom
 }>()
 
-const openDirections = () => {
-  const { latitude, longitude } = props.bathroom
-  const isApple = /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document
-  const url = isApple
-    ? `https://maps.apple.com/?daddr=${latitude},${longitude}&dirflg=w`
-    : `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}&travelmode=walking`
-  window.open(url, '_blank')
-}
+const { coords } = useGeolocation()
+
+const distance = computed(() => {
+  if (!coords.value) return null
+  const meters = haversineDistance(
+    coords.value.lat, coords.value.lng,
+    props.bathroom.latitude, props.bathroom.longitude,
+  )
+  return formatDistance(meters)
+})
 </script>

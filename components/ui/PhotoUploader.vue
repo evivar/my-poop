@@ -2,7 +2,7 @@
   <div class="space-y-2">
     <div v-if="previews.length > 0" class="flex gap-2 flex-wrap">
       <div v-for="(preview, i) in previews" :key="i" class="relative">
-        <img :src="preview.url" class="w-20 h-20 object-cover rounded-lg border border-gray-700" />
+        <img :src="preview.url" alt="Photo preview" loading="lazy" class="w-20 h-20 object-cover rounded-lg border border-gray-700" />
         <button
           type="button"
           class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-gray-800 border border-gray-600 rounded-full flex items-center justify-center text-xs text-gray-300 hover:bg-error-600 hover:text-white cursor-pointer transition-colors"

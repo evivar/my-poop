@@ -94,7 +94,11 @@
 const { locale } = useI18n()
 
 useSeoMeta({
-  title: 'Privacy Policy — My Poop',
-  description: 'Privacy policy for My Poop. No ads, no tracking, no data selling. Your data, your control.',
+  title: () => locale.value === 'es'
+    ? 'Política de Privacidad — My Poop'
+    : 'Privacy Policy — My Poop',
+  description: () => locale.value === 'es'
+    ? 'Política de privacidad de My Poop. Sin anuncios, sin tracking, sin venta de datos. Tus datos, tu control.'
+    : 'Privacy policy for My Poop. No ads, no tracking, no data selling. Your data, your control.',
 })
 </script>

@@ -1,8 +1,7 @@
 import type { Bathroom } from '~/types'
 
-const favoriteIds = ref<Set<string>>(new Set())
-
 export const useFavorites = () => {
+  const favoriteIds = useState<Set<string>>('favoriteIds', () => new Set())
   const supabase = useSupabaseClient()
   const { userId } = useAuth()
 

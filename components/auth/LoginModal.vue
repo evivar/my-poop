@@ -21,7 +21,7 @@
           </UButton>
         </form>
 
-        <USeparator label="or" class="my-4" />
+        <USeparator :label="$t('auth.or')" class="my-4" />
 
         <UButton
           icon="i-simple-icons-google"

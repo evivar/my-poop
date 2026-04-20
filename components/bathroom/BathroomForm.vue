@@ -11,7 +11,7 @@
         </UFormField>
 
         <!-- Location section: solo en modo create. En edit no se pueden tocar coordenadas. -->
-        <UFormField v-if="!isEditMode" label="Location" required>
+        <UFormField v-if="!isEditMode" :label="$t('bathroom.location')" required>
           <div class="space-y-2">
             <UInput
               v-model="locationQuery"

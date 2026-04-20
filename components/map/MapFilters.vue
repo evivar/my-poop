@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div ref="filterRef" class="relative">
     <UButton
       icon="i-heroicons-funnel"
       color="primary"
@@ -84,6 +84,19 @@ const filters = defineModel<{
 }>({ required: true })
 
 const open = ref(false)
+const filterRef = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+})
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
+const handleClickOutside = (e: MouseEvent) => {
+  if (open.value && filterRef.value && !filterRef.value.contains(e.target as Node)) {
+    open.value = false
+  }
+}
 
 const typeOptions = computed(() => [
   { label: t('bathroom.types.public'), value: 'public' as BathroomType },

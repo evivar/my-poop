@@ -28,6 +28,8 @@
         v-for="photo in review.photos"
         :key="photo.id"
         :src="getPhotoUrl(photo.storage_path)"
+        alt="Review photo"
+        loading="lazy"
         class="w-16 h-16 object-cover rounded border border-gray-700 hover:border-gray-500 transition-colors cursor-pointer"
         @click="lightboxSrc = getPhotoUrl(photo.storage_path)"
       />

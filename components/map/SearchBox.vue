@@ -1,5 +1,5 @@
 <template>
-  <div class="lg:w-md">
+  <div ref="searchRef" class="lg:w-md">
     <UInput
       v-model="query"
       :placeholder="$t('map.searchPlaceholder')"
@@ -32,6 +32,19 @@ const emit = defineEmits<{
 const { results, search, clear } = useGeocoder()
 const query = ref('')
 const showResults = ref(true)
+const searchRef = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+})
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
+const handleClickOutside = (e: MouseEvent) => {
+  if (showResults.value && searchRef.value && !searchRef.value.contains(e.target as Node)) {
+    showResults.value = false
+  }
+}
 
 watch(query, (val) => {
   showResults.value = true

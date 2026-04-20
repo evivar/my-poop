@@ -84,6 +84,8 @@
                 v-for="photo in bathroomPhotos"
                 :key="photo.id"
                 :src="getPhotoUrl(photo.storage_path)"
+                :alt="`Photo of ${selectedBathroom.name}`"
+                loading="lazy"
                 class="w-24 h-20 object-cover rounded-lg border border-gray-700 hover:border-gray-500 transition-colors cursor-pointer shrink-0"
                 @click="lightboxSrc = getPhotoUrl(photo.storage_path)"
               />
@@ -238,7 +240,7 @@ const openInNewTab = () => {
 
 const shareBathroom = async () => {
   if (!selectedBathroom.value) return
-  const text = `${selectedBathroom.value.name} — ${selectedBathroom.value.avg_rating.toFixed(1)}/5 🧻`
+  const text = `${selectedBathroom.value.name} — ${(selectedBathroom.value.avg_rating ?? 0).toFixed(1)}/5 🧻`
   try {
     const result = await share({
       title: selectedBathroom.value.name,

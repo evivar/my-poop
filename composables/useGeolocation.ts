@@ -2,9 +2,9 @@ import { Capacitor } from '@capacitor/core'
 import { Geolocation } from '@capacitor/geolocation'
 
 export const useGeolocation = () => {
-  const coords = ref<{ lat: number, lng: number } | null>(null)
-  const error = ref<string | null>(null)
-  const loading = ref(false)
+  const coords = useState<{ lat: number, lng: number } | null>('geo-coords', () => null)
+  const error = useState<string | null>('geo-error', () => null)
+  const loading = useState('geo-loading', () => false)
 
   const getCurrentPosition = async () => {
     loading.value = true

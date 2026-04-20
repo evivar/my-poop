@@ -63,7 +63,7 @@
               {{ b.name }}
             </NuxtLink>
             <div class="text-xs text-gray-400 flex items-center gap-2">
-              <span>⭐ {{ b.avg_rating.toFixed(1) }}</span>
+              <span>⭐ {{ (b.avg_rating ?? 0).toFixed(1) }}</span>
               <span>·</span>
               <span>{{ b.review_count }} {{ $t('bathroom.reviews').toLowerCase() }}</span>
               <span v-if="b.is_free">· {{ $t('bathroom.free') }}</span>
@@ -156,7 +156,7 @@ useSeoMeta({
   description: () => `${stats.value.total} reviewed public toilets in ${city.name}, ${city.country}. Find clean, accessible, free restrooms with real ratings from the community.`,
   ogTitle: () => `Public bathrooms in ${city.name}`,
   ogDescription: () => `${stats.value.total} restrooms with reviews, photos, and accessibility info.`,
-  ogImage: '/og-image.png',
+  ogImage: 'https://my-poop.vercel.app/og-image.png',
   twitterCard: 'summary_large_image',
 })
 
