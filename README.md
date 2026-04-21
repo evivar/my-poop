@@ -116,7 +116,7 @@
 
 ## Why not just Google Maps?
 
-- **Google shows *where* a bathroom is. My Poop shows *how it is*** — cleanliness, privacy, toilet paper, accessibility. The stuff Google won't tell you.
+- **Google shows _where_ a bathroom is. My Poop shows _how it is_** — cleanliness, privacy, toilet paper, accessibility. The stuff Google won't tell you.
 - **No signup to browse.** Google Maps is tied to your identity. My Poop is anonymous by default — nobody knows what you're searching, not even me.
 - **Hidden bathrooms.** The ones behind a gas station counter, inside a mosque, in a public park that never made it onto Google. OSM and the community do have them.
 - **Real-time status.** Flag a bathroom as "no paper", "dirty" or "closed" so the next person knows before they open the door.
@@ -144,23 +144,6 @@ No account required to browse. No ads. No tracking. Ever.
 | Hosting        | Vercel (Edge, Analytics)                  |
 | Mobile         | Capacitor (Android), PWA (iOS)            |
 | Content safety | NSFW.js (TensorFlow)                      |
-
-## Architecture
-
-```mermaid
-flowchart LR
-  U([User]) -->|PWA / APK| C[Nuxt 4 + Vue 3]
-  C -->|SSR on Edge| V[Vercel Edge]
-  C -->|REST + RLS| S[(Supabase<br/>PostgreSQL + Auth + Storage)]
-  C -->|Map tiles| OSM[(OpenStreetMap<br/>tiles)]
-  Seed[Seed script] -->|Overpass QL| OVP[(Overpass API)]
-  OVP -->|25.7k bathrooms| Seed
-  Seed -->|Idempotent upsert| S
-  C -->|On-device<br/>image moderation| NSFW[[NSFW.js<br/>TensorFlow.js]]
-  GH[GitHub Actions] -->|Signed APK release| REL{{GitHub Releases}}
-```
-
-The whole stack runs on free tiers. The seed script is idempotent — re-running it never creates duplicates thanks to a partial unique index on `osm_id`.
 
 ## Getting started
 
@@ -194,13 +177,13 @@ npm run seed:osm madrid   # Single city
 
 Pick your time budget:
 
-| Time | What you can do |
-| --- | --- |
-| **30 seconds** | ⭐ [Star the repo](https://github.com/evivar/my-poop) so others can find it |
-| **2 minutes** | [Add a bathroom](https://my-poop.vercel.app) from your city directly in the app |
-| **10 minutes** | Report a bug or suggest a feature in [Issues](https://github.com/evivar/my-poop/issues/new) |
-| **1 hour** | Seed a new city: `npm run seed:osm <city>` and open a PR |
-| **An afternoon** | Pick a [good first issue](https://github.com/evivar/my-poop/contribute) |
+| Time             | What you can do                                                                             |
+| ---------------- | ------------------------------------------------------------------------------------------- |
+| **30 seconds**   | ⭐ [Star the repo](https://github.com/evivar/my-poop) so others can find it                 |
+| **2 minutes**    | [Add a bathroom](https://my-poop.vercel.app) from your city directly in the app             |
+| **10 minutes**   | Report a bug or suggest a feature in [Issues](https://github.com/evivar/my-poop/issues/new) |
+| **1 hour**       | Seed a new city: `npm run seed:osm <city>` and open a PR                                    |
+| **An afternoon** | Pick a [good first issue](https://github.com/evivar/my-poop/contribute)                     |
 
 Not a dev? The most valuable contribution is adding bathrooms you know of — the ones tourists will never find on Google.
 
