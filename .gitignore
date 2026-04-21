@@ -5,6 +5,9 @@
 .nitro
 .cache
 
+# TypeScript incremental builds
+*.tsbuildinfo
+
 # Node dependencies
 node_modules
 
@@ -16,21 +19,30 @@ logs
 .DS_Store
 .fleet
 .idea
+*.iml
 
 # Local env files
 .env
 .env.*
 !.env.example
 
+# Vercel CLI local state
+.vercel
+
 # Capacitor native projects
 # android/ se commitea porque tiene cambios manuales (AndroidManifest, iconos)
+# pero nunca los artefactos de build o el APK generado
 ios/
+*.apk
+*.aab
+android/local.properties
 
-# Signing keys
+# Signing keys — NUNCA commitear
 *.jks
 *.keystore
 
+# Editor / herramientas locales
 .claude
-,github
 .playwright-mcp
+.vscode
     

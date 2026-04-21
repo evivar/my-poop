@@ -1,8 +1,0 @@
-- generic [ref=e3]:
-  - navigation [ref=e4]:
-    - link "🧻 My Poop" [ref=e5] [cursor=pointer]:
-      - /url: /
-      - generic [ref=e6]: 🧻
-      - generic [ref=e7]: My Poop
-  - main [ref=e8]:
-    - progressbar [ref=e11]
