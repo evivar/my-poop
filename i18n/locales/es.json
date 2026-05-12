@@ -28,6 +28,7 @@
     "noAccount": "¿No tienes cuenta?",
     "hasAccount": "¿Ya tienes cuenta?",
     "confirming": "Confirmando tu cuenta...",
+    "confirmError": "No pudimos confirmar tu cuenta. El enlace puede haber expirado.",
     "or": "o",
     "passwordsMismatch": "Las contraseñas no coinciden",
     "checkEmail": "Revisa tu email para confirmar tu cuenta",
@@ -37,6 +38,11 @@
     "searchPlaceholder": "Buscar dirección o lugar...",
     "locateMe": "Encontrar mi ubicación",
     "noBathroomsInArea": "No se encontraron baños en esta zona"
+  },
+  "geolocation": {
+    "permissionDenied": "Permiso de ubicación denegado",
+    "notSupported": "La geolocalización no está disponible en este dispositivo",
+    "failed": "No se pudo obtener tu ubicación"
   },
   "bathroom": {
     "name": "Nombre",
@@ -72,7 +78,9 @@
     "verified": "Verificado",
     "helpImproveOsm": "Ayuda a mejorar este baño — edítalo para añadir detalles",
     "edit": "Editar",
-    "editBathroom": "Editar baño"
+    "editBathroom": "Editar baño",
+    "details": "Detalles del baño",
+    "detailsDescription": "Información del baño y reseñas"
   },
   "review": {
     "rating": "Puntuación General",
@@ -176,6 +184,7 @@
     "error": "Ha ocurrido un error",
     "success": "Éxito",
     "notFound": "No encontrado",
-    "save": "Guardar"
+    "save": "Guardar",
+    "goHome": "Volver al inicio"
   }
 }

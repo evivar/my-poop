@@ -5,6 +5,7 @@ export const useGeolocation = () => {
   const coords = useState<{ lat: number, lng: number } | null>('geo-coords', () => null)
   const error = useState<string | null>('geo-error', () => null)
   const loading = useState('geo-loading', () => false)
+  const { t } = useI18n()
 
   const getCurrentPosition = async () => {
     loading.value = true
@@ -13,7 +14,7 @@ export const useGeolocation = () => {
       if (Capacitor.isNativePlatform()) {
         const permission = await Geolocation.requestPermissions()
         if (permission.location !== 'granted') {
-          error.value = 'Location permission denied'
+          error.value = t('geolocation.permissionDenied')
           return
         }
         const position = await Geolocation.getCurrentPosition({
@@ -27,7 +28,7 @@ export const useGeolocation = () => {
       }
       else {
         if (!navigator.geolocation) {
-          error.value = 'Geolocation is not supported'
+          error.value = t('geolocation.notSupported')
           return
         }
         await new Promise<void>((resolve) => {
@@ -40,7 +41,7 @@ export const useGeolocation = () => {
               resolve()
             },
             (err) => {
-              error.value = err.message
+              error.value = err.message || t('geolocation.failed')
               resolve()
             },
             { enableHighAccuracy: true, timeout: 10000 },
@@ -49,7 +50,7 @@ export const useGeolocation = () => {
       }
     }
     catch (e: any) {
-      error.value = e.message ?? 'Failed to get location'
+      error.value = e.message ?? t('geolocation.failed')
     }
     finally {
       loading.value = false

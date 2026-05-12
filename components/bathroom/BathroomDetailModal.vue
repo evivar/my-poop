@@ -1,5 +1,5 @@
 <template>
-  <UModal v-model:open="bathroomDetailOpen" :ui="{ content: 'max-w-7xl' }" title="Bathroom Details" description="Bathroom details and reviews">
+  <UModal v-model:open="bathroomDetailOpen" :ui="{ content: 'max-w-7xl' }" :title="$t('bathroom.details')" :description="$t('bathroom.detailsDescription')">
     <template #content>
       <div v-if="selectedBathroom" class="max-h-[85vh] overflow-y-auto">
         <UCard>

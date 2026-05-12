@@ -33,7 +33,7 @@
         size="xl"
         class="rounded-full shadow-lg p-4!"
         :title="$t('bathroom.addBathroom')"
-        @click="openBathroomForm"
+        @click="() => openBathroomForm()"
       />
     </div>
   </div>

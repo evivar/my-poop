@@ -28,6 +28,7 @@
     "noAccount": "Don't have an account?",
     "hasAccount": "Already have an account?",
     "confirming": "Confirming your account...",
+    "confirmError": "We couldn't confirm your account. The link may have expired.",
     "or": "or",
     "passwordsMismatch": "Passwords do not match",
     "checkEmail": "Check your email to confirm your account",
@@ -37,6 +38,11 @@
     "searchPlaceholder": "Search for an address or place...",
     "locateMe": "Find my location",
     "noBathroomsInArea": "No bathrooms found in this area"
+  },
+  "geolocation": {
+    "permissionDenied": "Location permission denied",
+    "notSupported": "Geolocation is not available on this device",
+    "failed": "Couldn't get your location"
   },
   "bathroom": {
     "name": "Name",
@@ -72,7 +78,9 @@
     "verified": "Verified",
     "helpImproveOsm": "Help improve this bathroom — edit it to add details",
     "edit": "Edit",
-    "editBathroom": "Edit Bathroom"
+    "editBathroom": "Edit Bathroom",
+    "details": "Bathroom Details",
+    "detailsDescription": "Bathroom details and reviews"
   },
   "review": {
     "rating": "Overall Rating",
@@ -176,6 +184,7 @@
     "error": "An error occurred",
     "success": "Success",
     "notFound": "Not found",
-    "save": "Save"
+    "save": "Save",
+    "goHome": "Back to home"
   }
 }

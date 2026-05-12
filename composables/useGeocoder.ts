@@ -67,5 +67,16 @@ export const useGeocoder = () => {
     results.value = []
   }
 
+  // Limpiar el timer pendiente al desmontar el componente para evitar
+  // que un fetch dispare después de cerrar la pantalla/modal.
+  if (getCurrentScope()) {
+    onScopeDispose(() => {
+      if (debounceTimer) {
+        clearTimeout(debounceTimer)
+        debounceTimer = null
+      }
+    })
+  }
+
   return { results, loading, search, clear }
 }

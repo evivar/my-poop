@@ -9,7 +9,15 @@ export const useIosPwaPrompt = () => {
     const isIos = /iPhone|iPad|iPod/.test(navigator.userAgent)
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches
       || (navigator as any).standalone === true
-    const dismissed = localStorage.getItem('pwa-prompt-dismissed')
+
+    // localStorage puede lanzar en modo privado de iOS Safari (QuotaExceededError).
+    let dismissed: string | null = null
+    try {
+      dismissed = localStorage.getItem('pwa-prompt-dismissed')
+    } catch {
+      // Sin acceso a storage → asumimos no dismissed; tampoco persistirá el dismiss
+      // pero al menos no crasheamos la app al arrancar.
+    }
 
     if (isIos && !isStandalone && !dismissed) {
       show.value = true
@@ -18,7 +26,12 @@ export const useIosPwaPrompt = () => {
 
   const dismiss = () => {
     show.value = false
-    localStorage.setItem('pwa-prompt-dismissed', '1')
+    try {
+      localStorage.setItem('pwa-prompt-dismissed', '1')
+    } catch {
+      // Ignorar: modo privado iOS, storage lleno, etc. El banner queda oculto
+      // en esta sesión aunque no podamos persistir.
+    }
   }
 
   return { show, dismiss }

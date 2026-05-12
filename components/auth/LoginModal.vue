@@ -28,6 +28,8 @@
           color="neutral"
           variant="solid"
           block
+          :loading="googleLoading"
+          :disabled="loading"
           @click="handleGoogleLogin"
         >
           {{ $t('auth.loginWithGoogle') }}
@@ -54,6 +56,7 @@ const toast = useToast()
 const email = ref('')
 const password = ref('')
 const loading = ref(false)
+const googleLoading = ref(false)
 
 const handleLogin = async () => {
   loading.value = true
@@ -68,10 +71,13 @@ const handleLogin = async () => {
 }
 
 const handleGoogleLogin = async () => {
+  googleLoading.value = true
   try {
     await loginWithGoogle()
   } catch (err: any) {
     toast.add({ title: err.message, color: 'error' })
+  } finally {
+    googleLoading.value = false
   }
 }
 </script>
