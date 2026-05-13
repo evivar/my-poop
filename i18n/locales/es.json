@@ -80,7 +80,10 @@
     "edit": "Editar",
     "editBathroom": "Editar baño",
     "details": "Detalles del baño",
-    "detailsDescription": "Información del baño y reseñas"
+    "detailsDescription": "Información del baño y reseñas",
+    "toiletTypes": "Tipo de inodoro",
+    "throne": "Inodoro convencional",
+    "squatter": "Letrina turca"
   },
   "review": {
     "rating": "Puntuación General",
@@ -155,6 +158,8 @@
     "onlyFree": "Solo gratuitos",
     "onlyAccessible": "Solo accesibles",
     "onlyFavorites": "Solo favoritos",
+    "onlyThrone": "Solo con inodoro convencional",
+    "onlySquatter": "Solo con letrina turca",
     "minRating": "Puntuación mínima"
   },
   "nearest": {

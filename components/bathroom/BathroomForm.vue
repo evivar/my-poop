@@ -39,6 +39,13 @@
           <UCheckbox v-model="form.is_free" :label="$t('bathroom.free')" />
         </div>
 
+        <UFormField :label="$t('bathroom.toiletTypes')">
+          <div class="flex gap-4">
+            <UCheckbox v-model="form.has_throne" :label="$t('bathroom.throne')" />
+            <UCheckbox v-model="form.has_squatter" :label="$t('bathroom.squatter')" />
+          </div>
+        </UFormField>
+
         <UFormField :label="$t('bathroom.directions')">
           <UTextarea v-model="form.directions" :placeholder="$t('bathroom.directionsPlaceholder')" class="w-full" />
         </UFormField>
@@ -103,6 +110,8 @@ const form = reactive({
   longitude: 0,
   is_accessible: false,
   is_free: true,
+  has_squatter: false,
+  has_throne: false,
   directions: '',
   schedule: '',
 })
@@ -212,6 +221,8 @@ const resetForm = () => {
   form.longitude = 0
   form.is_accessible = false
   form.is_free = true
+  form.has_squatter = false
+  form.has_throne = false
   form.directions = ''
   form.schedule = ''
   locationQuery.value = ''
@@ -227,6 +238,8 @@ const fillFormFromEditing = () => {
   form.longitude = b.longitude
   form.is_accessible = b.is_accessible
   form.is_free = b.is_free
+  form.has_squatter = b.has_squatter
+  form.has_throne = b.has_throne
   form.directions = b.directions ?? ''
   form.schedule = b.schedule ?? ''
 }
@@ -262,6 +275,8 @@ const handleSubmit = async () => {
         type: form.type,
         is_accessible: form.is_accessible,
         is_free: form.is_free,
+        has_squatter: form.has_squatter,
+        has_throne: form.has_throne,
         directions: form.directions || null,
         schedule: form.schedule || null,
       })

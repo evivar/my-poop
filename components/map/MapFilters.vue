@@ -49,6 +49,14 @@
           <UCheckbox v-model="filters.onlyFavorites" />
           <span>{{ $t('filters.onlyFavorites') }}</span>
         </label>
+        <label class="flex items-center gap-2 text-sm cursor-pointer">
+          <UCheckbox v-model="filters.onlyThrone" />
+          <span>{{ $t('filters.onlyThrone') }}</span>
+        </label>
+        <label class="flex items-center gap-2 text-sm cursor-pointer">
+          <UCheckbox v-model="filters.onlySquatter" />
+          <span>{{ $t('filters.onlySquatter') }}</span>
+        </label>
       </div>
 
       <div class="space-y-1">
@@ -80,6 +88,8 @@ const filters = defineModel<{
   onlyFree: boolean
   onlyAccessible: boolean
   onlyFavorites: boolean
+  onlyThrone: boolean
+  onlySquatter: boolean
   minRating: number
 }>({ required: true })
 
@@ -115,6 +125,8 @@ const activeCount = computed(() => {
   if (filters.value.onlyFree) count++
   if (filters.value.onlyAccessible) count++
   if (filters.value.onlyFavorites) count++
+  if (filters.value.onlyThrone) count++
+  if (filters.value.onlySquatter) count++
   if (filters.value.minRating > 0) count++
   return count
 })
@@ -133,6 +145,8 @@ const clearAll = () => {
   filters.value.onlyFree = false
   filters.value.onlyAccessible = false
   filters.value.onlyFavorites = false
+  filters.value.onlyThrone = false
+  filters.value.onlySquatter = false
   filters.value.minRating = 0
 }
 </script>

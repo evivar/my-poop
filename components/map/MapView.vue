@@ -66,6 +66,8 @@ const filters = ref({
   onlyFree: false,
   onlyAccessible: false,
   onlyFavorites: false,
+  onlyThrone: false,
+  onlySquatter: false,
   minRating: 0,
 })
 
@@ -76,6 +78,13 @@ const filteredBathrooms = computed(() => {
     if (filters.value.onlyAccessible && !b.is_accessible) return false
     if (filters.value.onlyFavorites && !favoriteIds.value.has(b.id)) return false
     if (filters.value.minRating > 0 && b.avg_rating < filters.value.minRating) return false
+    // Toilet type filters: semántica OR. Si solo uno está activo, el baño debe
+    // tenerlo. Si ambos están activos, basta con que tenga al menos uno.
+    if (filters.value.onlyThrone || filters.value.onlySquatter) {
+      const matchesThrone = filters.value.onlyThrone && b.has_throne
+      const matchesSquatter = filters.value.onlySquatter && b.has_squatter
+      if (!matchesThrone && !matchesSquatter) return false
+    }
     return true
   })
 })

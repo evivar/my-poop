@@ -80,7 +80,10 @@
     "edit": "Edit",
     "editBathroom": "Edit Bathroom",
     "details": "Bathroom Details",
-    "detailsDescription": "Bathroom details and reviews"
+    "detailsDescription": "Bathroom details and reviews",
+    "toiletTypes": "Toilet type",
+    "throne": "Throne",
+    "squatter": "Squat toilet"
   },
   "review": {
     "rating": "Overall Rating",
@@ -155,6 +158,8 @@
     "onlyFree": "Free only",
     "onlyAccessible": "Accessible only",
     "onlyFavorites": "Favorites only",
+    "onlyThrone": "Throne only",
+    "onlySquatter": "Squat toilet only",
     "minRating": "Minimum rating"
   },
   "nearest": {

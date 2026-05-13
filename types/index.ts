@@ -17,6 +17,8 @@ export interface Bathroom {
   type: BathroomType
   is_accessible: boolean
   is_free: boolean
+  has_squatter: boolean
+  has_throne: boolean
   directions: string | null
   schedule: string | null
   avg_rating: number

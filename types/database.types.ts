@@ -55,6 +55,8 @@ export type Database = {
           created_at: string
           created_by: string | null
           directions: string | null
+          has_squatter: boolean
+          has_throne: boolean
           id: string
           is_accessible: boolean
           is_free: boolean
@@ -78,6 +80,8 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           directions?: string | null
+          has_squatter?: boolean
+          has_throne?: boolean
           id?: string
           is_accessible?: boolean
           is_free?: boolean
@@ -101,6 +105,8 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           directions?: string | null
+          has_squatter?: boolean
+          has_throne?: boolean
           id?: string
           is_accessible?: boolean
           is_free?: boolean

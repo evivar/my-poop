@@ -85,6 +85,8 @@ export const useBathrooms = () => {
       type?: string
       is_accessible?: boolean
       is_free?: boolean
+      has_squatter?: boolean
+      has_throne?: boolean
       schedule?: string | null
       directions?: string | null
     },
@@ -111,6 +113,8 @@ export const useBathrooms = () => {
     type: string
     is_accessible: boolean
     is_free: boolean
+    has_squatter: boolean
+    has_throne: boolean
     directions?: string
     schedule?: string
     created_by: string

@@ -17,6 +17,12 @@
         <UBadge v-if="bathroom.is_accessible" color="primary" variant="subtle">
           {{ $t('bathroom.accessible') }}
         </UBadge>
+        <UBadge v-if="bathroom.has_throne" color="neutral" variant="subtle">
+          {{ $t('bathroom.throne') }}
+        </UBadge>
+        <UBadge v-if="bathroom.has_squatter" color="neutral" variant="subtle">
+          {{ $t('bathroom.squatter') }}
+        </UBadge>
       </div>
 
       <div v-if="bathroom.directions" class="flex items-start gap-2">
